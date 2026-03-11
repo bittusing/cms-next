@@ -81,7 +81,7 @@ export default function AboutPage() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-400">
-                For over 15 years, we've been transforming dreams into reality through exceptional interior design and unparalleled craftsmanship.
+                For over 15 years, we&apos;ve been transforming dreams into reality through exceptional interior design and unparalleled craftsmanship.
               </p>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function AboutPage() {
                   <span className="text-amber-600"> 2008</span>
                 </h2>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                  Urban Design India began as a vision to transform the way people experience their living and working spaces. Founded by a team of passionate designers and architects, we've grown from a small studio to one of India's most trusted interior design firms.
+                  Urban Design India began as a vision to transform the way people experience their living and working spaces. Founded by a team of passionate designers and architects, we&apos;ve grown from a small studio to one of India&apos;s most trusted interior design firms.
                 </p>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Our journey has been marked by countless successful projects, satisfied clients, and a relentless pursuit of design excellence. Every space we create tells a unique story, reflecting the personality and aspirations of those who inhabit it.
@@ -227,7 +227,7 @@ export default function AboutPage() {
                 <span className="block text-amber-600">Design is How It Works</span>
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-                We believe that exceptional design goes beyond aesthetics. It's about creating spaces that enhance your lifestyle, improve functionality, and reflect your unique personality. Every element we choose, every color we select, and every layout we design serves a purpose in creating your perfect environment.
+                We believe that exceptional design goes beyond aesthetics. It&apos;s about creating spaces that enhance your lifestyle, improve functionality, and reflect your unique personality. Every element we choose, every color we select, and every layout we design serves a purpose in creating your perfect environment.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="bg-gray-50 p-8 rounded-2xl">
@@ -256,7 +256,7 @@ export default function AboutPage() {
           <div className="container-custom text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Design Journey?</h2>
             <p className="text-xl mb-8 text-amber-100 max-w-2xl mx-auto leading-relaxed">
-              Let's collaborate to create a space that perfectly reflects your vision and enhances your lifestyle. Your dream interior is just a conversation away.
+              Let&apos;s collaborate to create a space that perfectly reflects your vision and enhances your lifestyle. Your dream interior is just a conversation away.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

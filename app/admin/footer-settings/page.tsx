@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import AdminLayout from '@/components/AdminLayout';
 import { FaSave, FaUpload } from 'react-icons/fa';
 
@@ -146,7 +147,7 @@ export default function FooterSettingsAdmin() {
                       <FaUpload /> {uploading ? 'Uploading...' : 'Upload Logo'}
                     </label>
                     {formData.logo && (
-                      <img src={formData.logo} alt="Logo" className="h-10 w-auto" />
+                      <Image src={formData.logo} alt="Logo" width={40} height={40} className="h-10 w-auto" />
                     )}
                   </div>
                 </div>

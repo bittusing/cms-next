@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import AdminLayout from '@/components/AdminLayout';
 import Image from 'next/image';
@@ -19,15 +19,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
   const [newImages, setNewImages] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetchProject();
-      await fetchCategories();
-    };
-    fetchData();
-  }, [params.id]);
-
-  const fetchProject = async () => {
+  const fetchProject = useCallback(async () => {
     try {
       const res = await fetch(`/api/projects/${params.id}`);
       const data = await res.json();
@@ -41,9 +33,9 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
     } finally {
       setLoading(false);
     }
-  };
+  }, [params.id]);
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const res = await fetch('/api/categories');
       const data = await res.json();
@@ -51,7 +43,15 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
     } catch (error) {
       console.error('Failed to fetch categories:', error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchProject();
+      await fetchCategories();
+    };
+    fetchData();
+  }, [fetchProject, fetchCategories]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);

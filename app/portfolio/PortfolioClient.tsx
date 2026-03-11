@@ -70,7 +70,7 @@ export default function PortfolioClient({ initialProjects, initialCategories }: 
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">No Projects Found</h3>
               <p className="text-gray-600">
-                We're working on adding more amazing projects to this category. Check back soon!
+                We&apos;re working on adding more amazing projects to this category. Check back soon!
               </p>
             </div>
           </div>

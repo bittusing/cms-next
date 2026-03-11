@@ -183,7 +183,7 @@ export default function AdminTestPage() {
           <div className="space-y-2 text-sm text-yellow-700">
             <div>1. <strong>Restart Server:</strong> Stop (Ctrl+C) and run <code className="bg-yellow-100 px-1 rounded">npm run dev</code></div>
             <div>2. <strong>Clear Cache:</strong> Press Ctrl+Shift+R or use incognito mode</div>
-            <div>3. <strong>Check URL:</strong> Make sure you're using http://localhost:3000 (not 3001)</div>
+            <div>3. <strong>Check URL:</strong> Make sure you&apos;re using http://localhost:3000 (not 3001)</div>
             <div>4. <strong>Login:</strong> Go to <a href="/admin/login" className="underline">/admin/login</a> with admin/admin123</div>
           </div>
         </div>

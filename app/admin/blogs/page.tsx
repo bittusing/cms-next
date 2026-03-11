@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AdminLayout from '@/components/AdminLayout';
 import Image from 'next/image';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaEyeSlash, FaStar, FaRegStar, FaSearch, FaFilter } from 'react-icons/fa';
@@ -31,11 +31,7 @@ export default function BlogsAdmin() {
 
   const categories = ['Interior Design', 'Home Decor', 'Architecture', 'Tips & Guides', 'Trends', 'Case Studies'];
 
-  useEffect(() => {
-    fetchBlogs();
-  }, [currentPage, categoryFilter, searchTerm]);
-
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams({
@@ -57,7 +53,11 @@ export default function BlogsAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, categoryFilter, searchTerm]);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, [currentPage, categoryFilter, searchTerm, fetchBlogs]);
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this blog?')) return;

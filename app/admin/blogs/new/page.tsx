@@ -7,7 +7,14 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 // Dynamically import rich text editor to avoid SSR issues
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill'), { 
+  ssr: false,
+  loading: () => (
+    <div className="border border-gray-300 rounded-md p-4 h-96 flex items-center justify-center bg-gray-50">
+      <div className="text-gray-500">Loading editor...</div>
+    </div>
+  )
+});
 import 'react-quill/dist/quill.snow.css';
 
 export default function NewBlog() {
@@ -111,18 +118,32 @@ export default function NewBlog() {
   const quillModules = {
     toolbar: [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'font': [] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
       ['bold', 'italic', 'underline', 'strike'],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'color': [] }, { 'background': [] }],
       [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
       [{ 'indent': '-1'}, { 'indent': '+1' }],
       [{ 'direction': 'rtl' }],
-      [{ 'color': [] }, { 'background': [] }],
       [{ 'align': [] }],
-      ['link', 'image', 'video'],
+      ['link', 'image', 'video', 'formula'],
       ['blockquote', 'code-block'],
       ['clean']
-    ]
+    ],
+    clipboard: {
+      matchVisual: false,
+    }
   };
+
+  const quillFormats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video',
+    'align', 'color', 'background',
+    'script', 'code-block', 'formula'
+  ];
 
   return (
     <AdminLayout>
@@ -143,7 +164,7 @@ export default function NewBlog() {
               onClick={() => setPreview(!preview)}
               className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 flex items-center gap-2"
             >
-              <FaEye /> {preview ? 'Edit' : 'Preview'}
+              <FaEye /> {preview ? 'Back to Edit' : 'Preview'}
             </button>
             <button
               onClick={handleSubmit}
@@ -180,7 +201,17 @@ export default function NewBlog() {
                 <span className="mx-2">•</span>
                 <span>{new Date().toLocaleDateString()}</span>
               </div>
-              <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: formData.content }} />
+              <div 
+                className="prose prose-lg max-w-none blog-preview"
+                dangerouslySetInnerHTML={{ __html: formData.content }} 
+              />
+              
+              {/* Preview Notice */}
+              <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-blue-800 text-sm">
+                  <strong>Preview Mode:</strong> This is how your blog will appear to readers. Click &quot;Back to Edit&quot; to continue editing.
+                </p>
+              </div>
             </div>
           </div>
         ) : (
@@ -249,7 +280,9 @@ export default function NewBlog() {
                           value={formData.content}
                           onChange={(content) => setFormData({ ...formData, content })}
                           modules={quillModules}
+                          formats={quillFormats}
                           style={{ minHeight: '400px' }}
+                          placeholder="Write your blog content here..."
                         />
                       </div>
                     </div>

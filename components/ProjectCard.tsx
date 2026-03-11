@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 interface ProjectCardProps {
@@ -19,6 +19,31 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = useCallback(() => {
+    if (currentImageIndex < project.images.length - 1) {
+      const newIndex = currentImageIndex + 1;
+      setCurrentImageIndex(newIndex);
+      setSelectedImage(project.images[newIndex]);
+    }
+  }, [currentImageIndex, project.images]);
+
+  const prevImage = useCallback(() => {
+    if (currentImageIndex > 0) {
+      const newIndex = currentImageIndex - 1;
+      setCurrentImageIndex(newIndex);
+      setSelectedImage(project.images[newIndex]);
+    }
+  }, [currentImageIndex, project.images]);
+
+  const openImageModal = (imageIndex: number = 0) => {
+    setCurrentImageIndex(imageIndex);
+    setSelectedImage(project.images[imageIndex]);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
 
   // Keyboard support
   useEffect(() => {
@@ -47,32 +72,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [selectedImage, currentImageIndex]);
-
-  const openImageModal = (imageIndex: number = 0) => {
-    setCurrentImageIndex(imageIndex);
-    setSelectedImage(project.images[imageIndex]);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
-
-  const nextImage = () => {
-    if (currentImageIndex < project.images.length - 1) {
-      const newIndex = currentImageIndex + 1;
-      setCurrentImageIndex(newIndex);
-      setSelectedImage(project.images[newIndex]);
-    }
-  };
-
-  const prevImage = () => {
-    if (currentImageIndex > 0) {
-      const newIndex = currentImageIndex - 1;
-      setCurrentImageIndex(newIndex);
-      setSelectedImage(project.images[newIndex]);
-    }
-  };
+  }, [selectedImage, currentImageIndex, nextImage, prevImage]);
 
   return (
     <>
