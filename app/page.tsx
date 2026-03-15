@@ -124,23 +124,7 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Floating Stats */}
-            {/* <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10">
-              <div className="flex space-x-8 text-white">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">500+</div>
-                  <div className="text-sm text-gray-300">Projects Completed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">18+</div>
-                  <div className="text-sm text-gray-300">Years Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent">98%</div>
-                  <div className="text-sm text-gray-300">Client Satisfaction</div>
-                </div>
-              </div>
-            </div> */}
+
           </section>
         )}
 
@@ -308,7 +292,7 @@ export default async function Home() {
             <div className="text-center">
               <Link
                 href="/faqs"
-                className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg"
+                className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg"
               >
                 View All FAQs
                 <FaArrowRight className="ml-2" />

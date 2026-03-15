@@ -30,10 +30,22 @@ export default function TestimonialsSection({
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
     fetchTestimonials();
   }, [serviceType]);
+
+  // Auto-play functionality for 3+ testimonials
+  useEffect(() => {
+    if (testimonials.length >= 3 && isAutoPlaying) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }, 4000); // Change every 4 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [testimonials.length, isAutoPlaying]);
 
   const fetchTestimonials = async () => {
     try {
@@ -88,6 +100,10 @@ export default function TestimonialsSection({
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -108,115 +124,117 @@ export default function TestimonialsSection({
           <p className="text-lg sm:text-xl text-gray-600">Real feedback from our satisfied customers</p>
         </div>
 
-        {/* Desktop Grid View */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial._id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <div className="flex items-center mb-4">
-                {testimonial.image && (
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div>
-                  <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                  <div className="flex items-center mt-1">
-                    {renderStars(testimonial.rating)}
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-700 italic mb-4">&quot;{testimonial.text}&quot;</p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-accent font-medium">{testimonial.serviceType}</span>
-                {testimonial.isFeatured && (
-                  <span className="bg-accent bg-opacity-20 text-accent text-xs px-2 py-1 rounded-full">
-                    Featured
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile Carousel View */}
-        <div className="md:hidden relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-300 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {testimonials.map((testimonial) => (
-                <div key={testimonial._id} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <div className="flex items-center mb-4">
-                      {testimonial.image && (
-                        <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
-                          <Image
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                        <div className="flex items-center mt-1">
-                          {renderStars(testimonial.rating)}
+        {/* Auto-Moving Carousel for 3+ testimonials */}
+        {testimonials.length >= 3 ? (
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * (100 / Math.min(testimonials.length, 3))}%)` }}
+              >
+                {testimonials.map((testimonial) => (
+                  <div key={testimonial._id} className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+                    <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow h-full">
+                      <div className="flex items-center mb-4">
+                        {testimonial.image && (
+                          <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <Image
+                              src={testimonial.image}
+                              alt={testimonial.name}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        )}
+                        <div>
+                          <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                          <div className="flex items-center mt-1">
+                            {renderStars(testimonial.rating)}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <p className="text-gray-700 italic mb-4">&quot;{testimonial.text}&quot;</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-accent font-medium">{testimonial.serviceType}</span>
-                      {testimonial.isFeatured && (
-                        <span className="bg-accent bg-opacity-20 text-accent text-xs px-2 py-1 rounded-full">
-                          Featured
-                        </span>
-                      )}
+                      <p className="text-gray-700 italic mb-4">&quot;{testimonial.text}&quot;</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-accent font-medium">{testimonial.serviceType}</span>
+                        {testimonial.isFeatured && (
+                          <span className="bg-accent bg-opacity-20 text-accent text-xs px-2 py-1 rounded-full">
+                            Featured
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10"
+            >
+              <FaChevronLeft className="text-accent" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10"
+            >
+              <FaChevronRight className="text-accent" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentIndex ? 'bg-accent' : 'bg-gray-300'
+                  }`}
+                />
               ))}
             </div>
           </div>
-
-          {/* Carousel Controls */}
-          {testimonials.length > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50"
-              >
-                <FaChevronLeft className="text-gray-600" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50"
-              >
-                <FaChevronRight className="text-gray-600" />
-              </button>
-            </>
-          )}
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-accent' : 'bg-gray-300'
-                }`}
-              />
+        ) : (
+          /* Static Grid for less than 3 testimonials */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial._id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-center mb-4">
+                  {testimonial.image && (
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <div className="flex items-center mt-1">
+                      {renderStars(testimonial.rating)}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-gray-700 italic mb-4">&quot;{testimonial.text}&quot;</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-accent font-medium">{testimonial.serviceType}</span>
+                  {testimonial.isFeatured && (
+                    <span className="bg-accent bg-opacity-20 text-accent text-xs px-2 py-1 rounded-full">
+                      Featured
+                    </span>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

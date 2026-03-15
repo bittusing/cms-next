@@ -50,7 +50,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
               <div className="max-w-4xl text-white">
                 <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in-up">
                   {slide.title}
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
+                  <span className="block text-accent">
                     Excellence
                   </span>
                 </h1>
@@ -60,13 +60,13 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
                 <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-400">
                   <Link
                     href="/portfolio"
-                    className="group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 flex items-center shadow-2xl"
+                    className="group bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center shadow-2xl"
                   >
                     Explore Our Work
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <button className="group flex items-center text-white text-lg font-semibold hover:text-amber-400 transition-colors">
-                    <div className="w-12 h-12 rounded-full border-2 border-white group-hover:border-amber-400 flex items-center justify-center mr-3 transition-colors">
+                  <button className="group flex items-center text-white text-lg font-semibold hover:text-accent transition-colors">
+                    <div className="w-12 h-12 rounded-full border-2 border-white group-hover:border-accent flex items-center justify-center mr-3 transition-colors">
                       <FaPlay className="ml-1" />
                     </div>
                     Watch Our Story
@@ -100,7 +100,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
             onClick={() => setCurrent(index)}
             className={`transition-all duration-300 ${
               index === current 
-                ? 'w-12 h-3 bg-amber-500 rounded-full' 
+                ? 'w-12 h-3 bg-accent rounded-full' 
                 : 'w-3 h-3 bg-white/50 rounded-full hover:bg-white/70'
             }`}
           />
@@ -112,15 +112,15 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
           <div className="flex space-x-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-amber-400">500+</div>
+              <div className="text-3xl font-bold text-accent">500+</div>
               <div className="text-sm text-gray-300">Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-amber-400">15+</div>
+              <div className="text-3xl font-bold text-accent">15+</div>
               <div className="text-sm text-gray-300">Years</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-amber-400">98%</div>
+              <div className="text-3xl font-bold text-accent">98%</div>
               <div className="text-sm text-gray-300">Satisfaction</div>
             </div>
           </div>

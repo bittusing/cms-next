@@ -64,15 +64,15 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-bold mb-2">Email</h3>
-                    <p className="text-gray-600">info@portfolio.com</p>
+                    <p className="text-gray-600">info@urbandesignindia.com</p>
                   </div>
                   <div>
                     <h3 className="font-bold mb-2">Phone</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+91 97111 48175</p>
                   </div>
                   <div>
                     <h3 className="font-bold mb-2">Address</h3>
-                    <p className="text-gray-600">123 Design Street, Creative City, CC 12345</p>
+                    <p className="text-gray-600">A-135, GF Sunlight Colony-II, Ashram, New Delhi – 110014, India</p>
                   </div>
                 </div>
               </div>
