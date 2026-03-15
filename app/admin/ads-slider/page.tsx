@@ -13,6 +13,7 @@ interface AdsSlider {
   link: string;
   buttonText: string;
   isActive: boolean;
+  isPublished: boolean;
   order: number;
   createdAt: string;
 }
@@ -30,6 +31,7 @@ export default function AdsSliderAdmin() {
     link: '',
     buttonText: 'Learn More',
     isActive: true,
+    isPublished: false,
     order: 0
   });
 
@@ -39,7 +41,7 @@ export default function AdsSliderAdmin() {
 
   const fetchAdsSliders = async () => {
     try {
-      const response = await fetch('/api/ads-slider');
+      const response = await fetch('/api/ads-slider?admin=true');
       if (response.ok) {
         const data = await response.json();
         setAdsSliders(data);
@@ -111,6 +113,7 @@ export default function AdsSliderAdmin() {
       link: adsSlider.link,
       buttonText: adsSlider.buttonText,
       isActive: adsSlider.isActive,
+      isPublished: adsSlider.isPublished,
       order: adsSlider.order
     });
     setEditingId(adsSlider._id);
@@ -138,7 +141,7 @@ export default function AdsSliderAdmin() {
   const toggleActive = async (id: string, isActive: boolean) => {
     try {
       const response = await fetch(`/api/ads-slider/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isActive: !isActive })
       });
@@ -151,6 +154,22 @@ export default function AdsSliderAdmin() {
     }
   };
 
+  const togglePublished = async (id: string, isPublished: boolean) => {
+    try {
+      const response = await fetch(`/api/ads-slider/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isPublished: !isPublished })
+      });
+      
+      if (response.ok) {
+        await fetchAdsSliders();
+      }
+    } catch (error) {
+      console.error('Failed to toggle ads slider publish status:', error);
+    }
+  };
+
   const resetForm = () => {
     setFormData({
       title: '',
@@ -159,6 +178,7 @@ export default function AdsSliderAdmin() {
       link: '',
       buttonText: 'Learn More',
       isActive: true,
+      isPublished: false,
       order: 0
     });
     setEditingId(null);
@@ -307,17 +327,31 @@ export default function AdsSliderAdmin() {
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="isActive"
-                    checked={formData.isActive}
-                    onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label htmlFor="isActive" className="ml-2 block text-sm text-gray-900">
-                    Active
-                  </label>
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="isActive"
+                      checked={formData.isActive}
+                      onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="isActive" className="ml-2 block text-sm text-gray-900">
+                      Active
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="isPublished"
+                      checked={formData.isPublished}
+                      onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })}
+                      className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="isPublished" className="ml-2 block text-sm text-gray-900">
+                      Published
+                    </label>
+                  </div>
                 </div>
               </div>
               
@@ -356,6 +390,9 @@ export default function AdsSliderAdmin() {
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Published
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Order
@@ -397,6 +434,18 @@ export default function AdsSliderAdmin() {
                       >
                         {adsSlider.isActive ? <FaEye className="mr-1" /> : <FaEyeSlash className="mr-1" />}
                         {adsSlider.isActive ? 'Active' : 'Inactive'}
+                      </button>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <button
+                        onClick={() => togglePublished(adsSlider._id, adsSlider.isPublished)}
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          adsSlider.isPublished
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }`}
+                      >
+                        {adsSlider.isPublished ? '🌐 Published' : '📝 Draft'}
                       </button>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

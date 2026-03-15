@@ -1,23 +1,55 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
-async function getFooterSettings() {
-  try {
-    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/footer-settings`, {
-      cache: 'no-store'
-    });
-    if (!res.ok) return null;
-    return res.json();
-  } catch (error) {
-    console.error('Failed to fetch footer settings:', error);
-    return null;
-  }
+interface FooterSettings {
+  companyName: string;
+  companyDescription: string;
+  logo: string;
+  phone: string;
+  email: string;
+  address: string;
+  facebookUrl: string;
+  instagramUrl: string;
+  linkedinUrl: string;
+  copyrightText: string;
 }
 
-export default async function Footer() {
-  const footerSettings = await getFooterSettings();
+// Cache for footer settings to prevent multiple API calls
+let footerCache: FooterSettings | null = null;
+let cacheTime: number = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+export default function Footer() {
+  const [footerSettings, setFooterSettings] = useState<FooterSettings | null>(null);
+
+  useEffect(() => {
+    const fetchFooterSettings = async () => {
+      // Check if we have cached data that's still valid
+      const now = Date.now();
+      if (footerCache && (now - cacheTime) < CACHE_DURATION) {
+        setFooterSettings(footerCache);
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/footer-settings');
+        if (res.ok) {
+          const data = await res.json();
+          footerCache = data;
+          cacheTime = now;
+          setFooterSettings(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch footer settings:', error);
+      }
+    };
+
+    fetchFooterSettings();
+  }, []);
 
   // Fallback data if API fails
   const defaultSettings = {
@@ -41,7 +73,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="relative w-40 h-16 mb-4">
+            <div className="relative w-48 h-20 mb-4">
               <Image
                 src={settings.logo}
                 alt={settings.companyName}

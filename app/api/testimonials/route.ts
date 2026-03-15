@@ -1,17 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dbConnect from '@/lib/mongodb';
+import connectDB from '@/lib/mongodb';
 import Testimonial from '@/models/Testimonial';
 import { verifyToken } from '@/utils/auth';
-import { mockTestimonials } from '@/lib/mockData';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    await dbConnect();
-    const testimonials = await Testimonial.find();
+    await connectDB();
+    const { searchParams } = new URL(request.url);
+    const isAdmin = searchParams.get('admin') === 'true';
+    const serviceType = searchParams.get('serviceType');
+    
+    let query: any = {};
+    if (!isAdmin) {
+      // For public API, only show published testimonials
+      query.isPublished = true;
+    }
+    
+    if (serviceType && serviceType !== 'all' && serviceType !== 'All') {
+      query.serviceType = serviceType;
+    }
+    
+    const testimonials = await Testimonial.find(query).sort({ isFeatured: -1, order: 1, createdAt: -1 });
     return NextResponse.json(testimonials);
   } catch (error) {
-    console.log('Using mock data - MongoDB not connected');
-    return NextResponse.json(mockTestimonials);
+    console.error('Error fetching testimonials:', error);
+    // Return empty array for better error handling
+    return NextResponse.json([]);
   }
 }
 
@@ -22,7 +36,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    await dbConnect();
+    await connectDB();
     const data = await request.json();
     const testimonial = await Testimonial.create(data);
     

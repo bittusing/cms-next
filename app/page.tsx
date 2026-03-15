@@ -15,6 +15,9 @@ const HeroSlider = dynamic(() => import('@/components/HeroSlider'), {
 const MovingAdsSection = dynamic(() => import('@/components/MovingAdsSection'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-32"></div>
 });
+const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
+  loading: () => <div className="animate-pulse bg-gray-200 h-64"></div>
+});
 
 async function getSliders() {
   try {
@@ -93,26 +96,26 @@ export default async function Home() {
 
             <div className="relative z-10 container-custom text-center text-white">
               <div className="max-w-4xl mx-auto">
-                <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                   Luxury Interior
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
+                  <span className="block text-accent">
                     Design Excellence
                   </span>
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed px-4 sm:px-0">
                   Creating extraordinary spaces that reflect your vision and elevate your lifestyle. 
                   Where sophistication meets functionality.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
                   <Link
                     href="/portfolio"
-                    className="group bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 flex items-center shadow-2xl"
+                    className="group bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center shadow-2xl w-full sm:w-auto justify-center"
                   >
                     Explore Our Work
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <button className="group flex items-center text-white text-lg font-semibold hover:text-amber-400 transition-colors">
-                    <div className="w-12 h-12 rounded-full border-2 border-white group-hover:border-amber-400 flex items-center justify-center mr-3 transition-colors">
+                  <button className="group flex items-center text-white text-base sm:text-lg font-semibold hover:text-accent transition-colors w-full sm:w-auto justify-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white group-hover:border-accent flex items-center justify-center mr-3 transition-colors">
                       <FaPlay className="ml-1" />
                     </div>
                     Watch Our Story
@@ -122,22 +125,22 @@ export default async function Home() {
             </div>
 
             {/* Floating Stats */}
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10">
+            {/* <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10">
               <div className="flex space-x-8 text-white">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-400">500+</div>
+                  <div className="text-3xl font-bold text-accent">500+</div>
                   <div className="text-sm text-gray-300">Projects Completed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-400">15+</div>
+                  <div className="text-3xl font-bold text-accent">18+</div>
                   <div className="text-sm text-gray-300">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-400">98%</div>
+                  <div className="text-3xl font-bold text-accent">98%</div>
                   <div className="text-sm text-gray-300">Client Satisfaction</div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </section>
         )}
 
@@ -146,12 +149,12 @@ export default async function Home() {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4">
+                <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                   About Urban Design India
                 </div>
-                <h2 className="text-5xl font-bold mb-6 text-gray-900 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
                   Crafting Spaces That 
-                  <span className="text-amber-600"> Inspire</span>
+                  <span className="text-accent"> Inspire</span>
                 </h2>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                   For over 15 years, Urban Design India has been at the forefront of luxury interior design, 
@@ -160,14 +163,14 @@ export default async function Home() {
                 </p>
                 <div className="grid grid-cols-2 gap-6 mb-8">
                   <div className="flex items-center">
-                    <FaAward className="text-amber-600 text-2xl mr-3" />
+                    <FaAward className="text-accent text-2xl mr-3" />
                     <div>
                       <div className="font-semibold text-gray-900">Award Winning</div>
                       <div className="text-sm text-gray-600">Design Excellence</div>
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <FaUsers className="text-amber-600 text-2xl mr-3" />
+                    <FaUsers className="text-accent text-2xl mr-3" />
                     <div>
                       <div className="font-semibold text-gray-900">Expert Team</div>
                       <div className="text-sm text-gray-600">Certified Professionals</div>
@@ -176,7 +179,7 @@ export default async function Home() {
                 </div>
                 <Link
                   href="/about"
-                  className="inline-flex items-center text-amber-600 font-semibold hover:text-amber-700 transition-colors"
+                  className="inline-flex items-center text-accent font-semibold hover:opacity-80 transition-colors"
                 >
                   Learn More About Us
                   <FaArrowRight className="ml-2" />
@@ -191,8 +194,8 @@ export default async function Home() {
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-6 -right-6 bg-amber-600 text-white p-6 rounded-2xl shadow-xl">
-                  <div className="text-2xl font-bold">15+</div>
+                <div className="absolute -bottom-6 -right-6 bg-accent text-white p-6 rounded-2xl shadow-xl">
+                  <div className="text-2xl font-bold">18+</div>
                   <div className="text-sm">Years of Excellence</div>
                 </div>
               </div>
@@ -204,10 +207,10 @@ export default async function Home() {
         <section className="py-24 bg-gray-50">
           <div className="container-custom">
             <div className="text-center mb-16">
-              <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Expertise
               </div>
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">Premium Design Services</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900">Premium Design Services</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 From concept to completion, we offer comprehensive interior design solutions 
                 tailored to your unique style and requirements.
@@ -216,40 +219,40 @@ export default async function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <div className="text-2xl text-white">🏠</div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Residential Design</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Transform your home into a sanctuary of luxury and comfort with our bespoke residential design solutions.
                 </p>
-                <Link href="/services" className="text-amber-600 font-semibold hover:text-amber-700 transition-colors flex items-center">
+                <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center">
                   Learn More <FaArrowRight className="ml-2 text-sm" />
                 </Link>
               </div>
 
               <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <div className="text-2xl text-white">🏢</div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Commercial Design</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Create inspiring workspaces that enhance productivity and reflect your brand&apos;s identity and values.
                 </p>
-                <Link href="/services" className="text-amber-600 font-semibold hover:text-amber-700 transition-colors flex items-center">
+                <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center">
                   Learn More <FaArrowRight className="ml-2 text-sm" />
                 </Link>
               </div>
 
               <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <div className="text-2xl text-white">✨</div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Luxury Renovation</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Breathe new life into your existing spaces with our comprehensive renovation and restoration services.
                 </p>
-                <Link href="/services" className="text-amber-600 font-semibold hover:text-amber-700 transition-colors flex items-center">
+                <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center">
                   Learn More <FaArrowRight className="ml-2 text-sm" />
                 </Link>
               </div>
@@ -261,10 +264,10 @@ export default async function Home() {
         <section className="py-24 bg-white">
           <div className="container-custom">
             <div className="text-center mb-16">
-              <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Portfolio
               </div>
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">Featured Projects</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900">Featured Projects</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Discover our latest masterpieces that showcase our commitment to excellence and innovation in design.
               </p>
@@ -280,7 +283,7 @@ export default async function Home() {
                 <div className="text-center mt-12">
                   <Link
                     href="/portfolio"
-                    className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-xl"
+                    className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl"
                   >
                     View All Projects
                     <FaArrowRight className="ml-2" />
@@ -295,31 +298,53 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* FAQs Preview Section */}
+        <section className="py-20 bg-gray-50">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-xl text-gray-600">Quick answers to common questions</p>
+            </div>
+            <div className="text-center">
+              <Link
+                href="/faqs"
+                className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg"
+              >
+                View All FAQs
+                <FaArrowRight className="ml-2" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Premium CTA */}
-        <section className="py-24 bg-gradient-to-r from-amber-500 to-orange-600 text-white relative overflow-hidden">
+        <section className="py-24 bg-accent text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-20"></div>
           <div className="container-custom text-center relative z-10">
-            <h2 className="text-5xl font-bold mb-6">Ready to Transform Your Space?</h2>
-            <p className="text-xl mb-8 text-amber-100 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Space?</h2>
+            <p className="text-xl mb-8 text-white opacity-80 max-w-2xl mx-auto">
               Let&apos;s collaborate to create something extraordinary. Your dream space is just a conversation away.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
               <Link
                 href="/contact"
-                className="inline-flex items-center bg-white text-amber-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
+                className="inline-flex items-center bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center"
               >
                 Start Your Project
                 <FaArrowRight className="ml-2" />
               </Link>
               <Link
                 href="/portfolio"
-                className="inline-flex items-center border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-amber-600 transition-all duration-300"
+                className="inline-flex items-center border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 View Our Work
               </Link>
             </div>
           </div>
         </section>
+
+        {/* Testimonials Section - Moved to bottom */}
+        <TestimonialsSection showFeaturedOnly={true} maxItems={6} />
 
         {/* Moving Ads Section */}
         <MovingAdsSection />

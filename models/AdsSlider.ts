@@ -27,6 +27,10 @@ const AdsSliderSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  isPublished: {
+    type: Boolean,
+    default: false
+  },
   order: {
     type: Number,
     default: 0

@@ -11,6 +11,8 @@ interface Ad {
   description: string;
   link?: string;
   buttonText?: string;
+  isActive: boolean;
+  isPublished: boolean;
 }
 
 export default function MovingAdsSection() {
@@ -25,6 +27,7 @@ export default function MovingAdsSection() {
         const response = await fetch('/api/ads-slider');
         if (response.ok) {
           const data = await response.json();
+          // Filter for only active and published ads (API already handles this)
           setAds(data);
         }
       } catch (error) {
@@ -85,7 +88,7 @@ export default function MovingAdsSection() {
             {currentAdData.link && (
               <a
                 href={currentAdData.link}
-                className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 {currentAdData.buttonText || 'Learn More'}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,7 +106,7 @@ export default function MovingAdsSection() {
               key={index}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentAd 
-                  ? 'bg-amber-500 w-6' 
+                  ? 'bg-accent w-6' 
                   : 'bg-gray-300'
               }`}
             />
@@ -111,7 +114,7 @@ export default function MovingAdsSection() {
         </div>
 
         {/* Premium Badge */}
-        <div className="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+        <div className="absolute top-3 left-3 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
           PREMIUM
         </div>
       </div>

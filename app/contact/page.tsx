@@ -46,8 +46,8 @@ export default function ContactPage() {
       <main className="pt-16">
         <div className="bg-primary text-white py-20">
           <div className="container-custom text-center">
-            <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
-            <p className="text-xl">Let&apos;s discuss your next project</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+            <p className="text-lg sm:text-xl">Let&apos;s discuss your next project</p>
           </div>
         </div>
 
@@ -55,7 +55,7 @@ export default function ContactPage() {
           <div className="container-custom max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-6">Get In Touch</h2>
                 <p className="text-gray-700 mb-8">
                   Have a project in mind? We&apos;d love to hear from you. Send us a message
                   and we&apos;ll respond as soon as possible.

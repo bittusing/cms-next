@@ -83,26 +83,26 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <div className="container-custom relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                Design <span className="text-amber-400">Insights</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Design <span className="text-accent">Insights</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-200 mb-8">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 px-4 sm:px-0">
                 Discover the latest trends, expert tips, and inspiring ideas in interior design
               </p>
               
               {/* Search Bar */}
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mx-auto px-4 sm:px-0">
                 <form method="GET" className="relative">
                   <input
                     type="text"
                     name="search"
                     defaultValue={searchParams.search}
                     placeholder="Search for design tips, trends, ideas..."
-                    className="w-full px-6 py-4 pr-16 text-gray-900 rounded-full text-lg focus:outline-none focus:ring-4 focus:ring-amber-400"
+                    className="w-full px-4 sm:px-6 py-3 sm:py-4 pr-12 sm:pr-16 text-gray-900 rounded-full text-base sm:text-lg focus:outline-none focus:ring-4 focus:ring-accent"
                   />
                   <button
                     type="submit"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-amber-500 text-white p-3 rounded-full hover:bg-amber-600 transition-colors"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-accent text-white p-3 rounded-full hover:opacity-90 transition-colors"
                   >
                     <FaSearch />
                   </button>
@@ -134,7 +134,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                             className="object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <div className="absolute top-4 left-4">
-                            <span className="bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">
                               Featured
                             </span>
                           </div>
@@ -147,7 +147,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                             <FaClock className="mr-2" />
                             {blog.readTime} min read
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition-colors">
+                          <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-accent transition-colors">
                             {blog.title}
                           </h3>
                           <p className="text-gray-600 mb-4 line-clamp-3">
@@ -158,7 +158,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                               <FaUser className="inline mr-1" />
                               {blog.author}
                             </span>
-                            <FaArrowRight className="text-amber-500 group-hover:translate-x-1 transition-transform" />
+                            <FaArrowRight className="text-accent group-hover:translate-x-1 transition-transform" />
                           </div>
                         </div>
                       </div>
@@ -178,7 +178,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                 href="/blogs"
                 className={`px-6 py-2 rounded-full transition-colors ${
                   !searchParams.category
-                    ? 'bg-amber-500 text-white'
+                    ? 'bg-accent text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -190,7 +190,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                   href={`/blogs?category=${encodeURIComponent(category)}`}
                   className={`px-6 py-2 rounded-full transition-colors ${
                     searchParams.category === category
-                      ? 'bg-amber-500 text-white'
+                      ? 'bg-accent text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -218,7 +218,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                 {(searchParams.search || searchParams.category) && (
                   <Link
                     href="/blogs"
-                    className="inline-flex items-center bg-amber-500 text-white px-6 py-3 rounded-full hover:bg-amber-600 transition-colors"
+                    className="inline-flex items-center bg-accent text-white px-6 py-3 rounded-full hover:opacity-90 transition-colors"
                   >
                     View All Blogs
                   </Link>
@@ -250,7 +250,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                             href={`/blogs?${href}`}
                             className={`px-4 py-2 rounded-md transition-colors ${
                               isActive
-                                ? 'bg-amber-500 text-white'
+                                ? 'bg-accent text-white'
                                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                             }`}
                           >

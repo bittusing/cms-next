@@ -2,10 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import AdsSlider from '@/models/AdsSlider';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await connectDB();
-    const adsSliders = await AdsSlider.find({ isActive: true }).sort({ order: 1, createdAt: -1 });
+    const { searchParams } = new URL(request.url);
+    const isAdmin = searchParams.get('admin') === 'true';
+    
+    let query = {};
+    if (!isAdmin) {
+      // For public API, only show active and published ads
+      query = { isActive: true, isPublished: true };
+    }
+    
+    const adsSliders = await AdsSlider.find(query).sort({ order: 1, createdAt: -1 });
     return NextResponse.json(adsSliders);
   } catch (error) {
     console.error('Error fetching ads sliders:', error);

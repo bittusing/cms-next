@@ -1,59 +1,72 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Metadata } from 'next';
+import TestimonialsSection from '@/components/TestimonialsSection';
 
-export const metadata: Metadata = {
-  title: 'Services | Urban Design India',
-  description: 'Explore Urban Design India interior design services - Residential, Commercial & 3D Visualization',
-};
+interface Service {
+  _id: string;
+  title: string;
+  description: string;
+  features: string[];
+  order: number;
+  isActive: boolean;
+}
+
+interface ProcessStep {
+  _id: string;
+  stepNumber: number;
+  title: string;
+  description: string;
+  order: number;
+  isActive: boolean;
+}
 
 export default function ServicesPage() {
-  const services = [
-    {
-      title: 'Residential Design',
-      description: 'Transform your home into a personalized sanctuary with our residential design services.',
-      features: [
-        'Living room design',
-        'Bedroom design',
-        'Kitchen design',
-        'Bathroom design',
-        'Home office design',
-      ],
-    },
-    {
-      title: 'Commercial Design',
-      description: 'Create inspiring workspaces that enhance productivity and reflect your brand.',
-      features: [
-        'Office design',
-        'Retail space design',
-        'Restaurant design',
-        'Hotel design',
-        'Co-working spaces',
-      ],
-    },
-    {
-      title: 'Renovation & Remodeling',
-      description: 'Breathe new life into your existing spaces with our renovation services.',
-      features: [
-        'Space planning',
-        'Structural changes',
-        'Material selection',
-        'Project management',
-        'Budget optimization',
-      ],
-    },
-    {
-      title: 'Consultation',
-      description: 'Get expert advice and guidance for your interior design projects.',
-      features: [
-        'Design consultation',
-        'Color consultation',
-        'Furniture selection',
-        'Lighting design',
-        'Material sourcing',
-      ],
-    },
-  ];
+  const [services, setServices] = useState<Service[]>([]);
+  const [processSteps, setProcessSteps] = useState<ProcessStep[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [servicesRes, stepsRes] = await Promise.all([
+          fetch('/api/services'),
+          fetch('/api/process-steps')
+        ]);
+
+        if (servicesRes.ok) {
+          const servicesData = await servicesRes.json();
+          setServices(servicesData);
+        }
+
+        if (stepsRes.ok) {
+          const stepsData = await stepsRes.json();
+          setProcessSteps(stepsData);
+        }
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-16">
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
+          </div>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
@@ -61,18 +74,21 @@ export default function ServicesPage() {
       <main className="pt-16">
         <div className="bg-primary text-white py-20">
           <div className="container-custom text-center">
-            <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-            <p className="text-xl">Comprehensive interior design solutions</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
+            <p className="text-lg sm:text-xl">Comprehensive interior design solutions</p>
           </div>
         </div>
 
         <section className="py-20">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {services.map((service, index) => (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
+              {services.map((service) => (
+                <div key={service._id} className="bg-white p-8 rounded-lg shadow-lg">
                   <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
-                  <p className="text-gray-700 mb-6">{service.description}</p>
+                  <div 
+                    className="text-gray-700 mb-6"
+                    dangerouslySetInnerHTML={{ __html: service.description }}
+                  />
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-gray-600">
@@ -89,31 +105,23 @@ export default function ServicesPage() {
 
         <section className="py-20 bg-secondary">
           <div className="container-custom text-center">
-            <h2 className="text-4xl font-bold mb-6">Our Process</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Our Process</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
-              <div>
-                <div className="text-4xl font-bold text-accent mb-4">01</div>
-                <h3 className="text-xl font-bold mb-2">Consultation</h3>
-                <p className="text-gray-600">We discuss your vision and requirements</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-accent mb-4">02</div>
-                <h3 className="text-xl font-bold mb-2">Design</h3>
-                <p className="text-gray-600">We create detailed design concepts</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-accent mb-4">03</div>
-                <h3 className="text-xl font-bold mb-2">Implementation</h3>
-                <p className="text-gray-600">We bring the design to life</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-accent mb-4">04</div>
-                <h3 className="text-xl font-bold mb-2">Completion</h3>
-                <p className="text-gray-600">Final touches and handover</p>
-              </div>
+              {processSteps.map((step) => (
+                <div key={step._id}>
+                  <div className="text-4xl font-bold text-accent mb-4">
+                    {step.stepNumber.toString().padStart(2, '0')}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
+
+        {/* Testimonials Section */}
+        <TestimonialsSection serviceType="All" maxItems={4} />
       </main>
       <Footer />
     </>

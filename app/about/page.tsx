@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   const achievements = [
     { number: '500+', label: 'Projects Completed', icon: '🏠' },
-    { number: '15+', label: 'Years Experience', icon: '⭐' },
+    { number: '18+', label: 'Years Experience', icon: '⭐' },
     { number: '98%', label: 'Client Satisfaction', icon: '❤️' },
     { number: '50+', label: 'Team Members', icon: '👥' }
   ];
@@ -71,16 +71,16 @@ export default function AboutPage() {
           
           <div className="relative z-10 container-custom text-center text-white">
             <div className="max-w-4xl mx-auto">
-              <div className="text-amber-400 text-sm font-semibold tracking-wider uppercase mb-4 animate-fade-in-up">
+              <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4 animate-fade-in-up">
                 About Urban Design India
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-200">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-200">
                 Crafting Spaces That 
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
+                <span className="block text-accent">
                   Inspire Excellence
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-400">
+              <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-400 px-4 sm:px-0">
                 For over 15 years, we&apos;ve been transforming dreams into reality through exceptional interior design and unparalleled craftsmanship.
               </p>
             </div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               {achievements.map((achievement, index) => (
                 <div key={index} className="text-center group">
                   <div className="text-4xl mb-3">{achievement.icon}</div>
-                  <div className="text-4xl md:text-5xl font-bold text-amber-600 mb-2 group-hover:scale-110 transition-transform">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
                     {achievement.number}
                   </div>
                   <div className="text-gray-600 font-medium">{achievement.label}</div>
@@ -109,12 +109,12 @@ export default function AboutPage() {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4">
+                <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                   Our Story
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
                   Designing Dreams Since 
-                  <span className="text-amber-600"> 2008</span>
+                  <span className="text-accent"> 2008</span>
                 </h2>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                   Urban Design India began as a vision to transform the way people experience their living and working spaces. Founded by a team of passionate designers and architects, we&apos;ve grown from a small studio to one of India&apos;s most trusted interior design firms.
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 </p>
                 <Link
                   href="/portfolio"
-                  className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-xl"
+                  className="inline-flex items-center bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center"
                 >
                   View Our Work
                   <FaArrowRight className="ml-2" />
@@ -141,7 +141,7 @@ export default function AboutPage() {
                 </div>
                 <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <FaQuoteLeft className="text-amber-600 text-2xl" />
+                    <FaQuoteLeft className="text-accent text-2xl" />
                     <div>
                       <div className="text-sm text-gray-600">Our Mission</div>
                       <div className="font-bold text-gray-900">Creating Extraordinary Spaces</div>
@@ -157,10 +157,10 @@ export default function AboutPage() {
         <section className="py-24 bg-white">
           <div className="container-custom">
             <div className="text-center mb-16">
-              <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Values
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">What Drives Us Forward</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900">What Drives Us Forward</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Our core values shape every decision we make and every design we create, ensuring that we deliver exceptional results that exceed expectations.
               </p>
@@ -169,7 +169,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
                 <div key={index} className="group text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                  <div className="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
                     <value.icon className="text-3xl text-white" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-gray-900">{value.title}</h3>
@@ -185,19 +185,19 @@ export default function AboutPage() {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <div className="text-amber-400 text-sm font-semibold tracking-wider uppercase mb-4">
+                <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                   Our Expertise
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
                   Comprehensive Design 
-                  <span className="text-amber-400"> Solutions</span>
+                  <span className="text-accent"> Solutions</span>
                 </h2>
                 <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                   From initial concept to final installation, we offer a complete range of interior design services tailored to meet your unique needs and preferences.
                 </p>
                 <Link
                   href="/services"
-                  className="inline-flex items-center border-2 border-amber-400 text-amber-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-amber-400 hover:text-gray-900 transition-all duration-300"
+                  className="inline-flex items-center border-2 border-accent text-accent px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-accent hover:text-white transition-all duration-300 w-full sm:w-auto justify-center"
                 >
                   Explore Services
                   <FaArrowRight className="ml-2" />
@@ -206,7 +206,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {services.map((service, index) => (
                   <div key={index} className="flex items-center space-x-3 bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors">
-                    <FaCheck className="text-amber-400 flex-shrink-0" />
+                    <FaCheck className="text-accent flex-shrink-0" />
                     <span className="text-gray-300">{service}</span>
                   </div>
                 ))}
@@ -219,12 +219,12 @@ export default function AboutPage() {
         <section className="py-24 bg-white">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4">
+              <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Philosophy
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-gray-900 leading-tight">
                 Design is Not Just What It Looks Like
-                <span className="block text-amber-600">Design is How It Works</span>
+                <span className="block text-accent">Design is How It Works</span>
               </h2>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed">
                 We believe that exceptional design goes beyond aesthetics. It&apos;s about creating spaces that enhance your lifestyle, improve functionality, and reflect your unique personality. Every element we choose, every color we select, and every layout we design serves a purpose in creating your perfect environment.
@@ -251,24 +251,24 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-r from-amber-500 to-orange-600 text-white relative overflow-hidden">
+        <section className="py-24 bg-accent text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-20"></div>
           <div className="container-custom text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Design Journey?</h2>
-            <p className="text-xl mb-8 text-amber-100 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Design Journey?</h2>
+            <p className="text-xl mb-8 text-white opacity-80 max-w-2xl mx-auto leading-relaxed">
               Let&apos;s collaborate to create a space that perfectly reflects your vision and enhances your lifestyle. Your dream interior is just a conversation away.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
               <Link
                 href="/contact"
-                className="inline-flex items-center bg-white text-amber-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
+                className="inline-flex items-center bg-white text-accent px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center"
               >
                 Get Started Today
                 <FaArrowRight className="ml-2" />
               </Link>
               <Link
                 href="/portfolio"
-                className="inline-flex items-center border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-amber-600 transition-all duration-300"
+                className="inline-flex items-center border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-accent transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 View Our Portfolio
               </Link>

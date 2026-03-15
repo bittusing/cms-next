@@ -26,7 +26,7 @@ export default function Navbar() {
       <div className="container-custom">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex items-center">
-            <div className="relative w-48 h-16">
+            <div className="relative w-56 h-20">
               <Image
                 src="/logo.png"
                 alt="Urban Design India"
@@ -45,8 +45,8 @@ export default function Navbar() {
               href="/" 
               className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-amber-600' 
-                  : 'text-gray-800 hover:text-amber-600'
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
               }`}
             >
               Home
@@ -55,8 +55,8 @@ export default function Navbar() {
               href="/portfolio" 
               className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-amber-600' 
-                  : 'text-gray-800 hover:text-amber-600'
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
               }`}
             >
               Portfolio
@@ -65,8 +65,8 @@ export default function Navbar() {
               href="/about" 
               className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-amber-600' 
-                  : 'text-gray-800 hover:text-amber-600'
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
               }`}
             >
               About
@@ -75,8 +75,8 @@ export default function Navbar() {
               href="/services" 
               className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-amber-600' 
-                  : 'text-gray-800 hover:text-amber-600'
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
               }`}
             >
               Services
@@ -85,17 +85,27 @@ export default function Navbar() {
               href="/blogs" 
               className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-amber-600' 
-                  : 'text-gray-800 hover:text-amber-600'
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
               }`}
             >
               Blog
             </Link>
             <Link 
-              href="/contact" 
-              className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-2 rounded-full font-medium hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-lg"
+              href="/faqs" 
+              className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
+              }`}
             >
-              Contact
+              FAQs
+            </Link>
+            <Link 
+              href="/contact" 
+              className="bg-accent text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition-all duration-300 shadow-lg"
+            >
+              Get A Quote
             </Link>
           </div>
 
@@ -113,22 +123,25 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden pb-4 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-lg">
-            <Link href="/" className="block py-3 text-gray-700 hover:text-amber-600 font-medium">
+            <Link href="/" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Home
             </Link>
-            <Link href="/portfolio" className="block py-3 text-gray-700 hover:text-amber-600 font-medium">
+            <Link href="/portfolio" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Portfolio
             </Link>
-            <Link href="/about" className="block py-3 text-gray-700 hover:text-amber-600 font-medium">
+            <Link href="/about" className="block py-3 text-gray-700 hover:text-accent font-medium">
               About
             </Link>
-            <Link href="/services" className="block py-3 text-gray-700 hover:text-amber-600 font-medium">
+            <Link href="/services" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Services
             </Link>
-            <Link href="/blogs" className="block py-3 text-gray-700 hover:text-amber-600 font-medium">
+            <Link href="/blogs" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Blog
             </Link>
-            <Link href="/contact" className="block py-3 text-gray-700 hover:text-amber-600 font-medium">
+            <Link href="/faqs" className="block py-3 text-gray-700 hover:text-accent font-medium">
+              FAQs
+            </Link>
+            <Link href="/contact" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Contact
             </Link>
           </div>

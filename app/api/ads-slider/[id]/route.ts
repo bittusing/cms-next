@@ -44,3 +44,32 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     return NextResponse.json({ error: 'Failed to delete ads slider' }, { status: 500 });
   }
 }
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    await connectDB();
+    const body = await request.json();
+    
+    // Handle publish toggle
+    if (body.hasOwnProperty('isPublished')) {
+      const adsSlider = await AdsSlider.findByIdAndUpdate(
+        params.id, 
+        { isPublished: body.isPublished }, 
+        { new: true }
+      );
+      if (!adsSlider) {
+        return NextResponse.json({ error: 'Ads slider not found' }, { status: 404 });
+      }
+      return NextResponse.json(adsSlider);
+    }
+    
+    // Handle other partial updates
+    const adsSlider = await AdsSlider.findByIdAndUpdate(params.id, body, { new: true });
+    if (!adsSlider) {
+      return NextResponse.json({ error: 'Ads slider not found' }, { status: 404 });
+    }
+    return NextResponse.json(adsSlider);
+  } catch (error) {
+    console.error('Error updating ads slider:', error);
+    return NextResponse.json({ error: 'Failed to update ads slider' }, { status: 500 });
+  }
+}
