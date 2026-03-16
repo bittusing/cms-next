@@ -92,6 +92,16 @@ export default function Navbar() {
               Blog
             </Link>
             <Link 
+              href="/videos" 
+              className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-accent' 
+                  : 'text-gray-800 hover:text-accent'
+              }`}
+            >
+              Videos
+            </Link>
+            <Link 
               href="/faqs" 
               className={`font-medium transition-colors ${
                 isScrolled 
@@ -137,6 +147,9 @@ export default function Navbar() {
             </Link>
             <Link href="/blogs" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Blog
+            </Link>
+            <Link href="/videos" className="block py-3 text-gray-700 hover:text-accent font-medium">
+              Videos
             </Link>
             <Link href="/faqs" className="block py-3 text-gray-700 hover:text-accent font-medium">
               FAQs

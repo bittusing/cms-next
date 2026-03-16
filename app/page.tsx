@@ -18,6 +18,9 @@ const MovingAdsSection = dynamic(() => import('@/components/MovingAdsSection'), 
 const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-64"></div>
 });
+const VideoSection = dynamic(() => import('@/components/VideoSection'), {
+  loading: () => <div className="animate-pulse bg-gray-200 h-64"></div>
+});
 
 async function getSliders() {
   try {
@@ -329,6 +332,13 @@ export default async function Home() {
 
         {/* Testimonials Section - Moved to bottom */}
         <TestimonialsSection showFeaturedOnly={true} maxItems={6} />
+
+        {/* Video Section */}
+        <VideoSection 
+          featuredOnly={true} 
+          maxVideos={3}
+          showCategories={false}
+        />
 
         {/* Moving Ads Section */}
         <MovingAdsSection />

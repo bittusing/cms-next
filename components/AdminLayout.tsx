@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { FaHome, FaImages, FaTags, FaEnvelope, FaSignOutAlt, FaAd, FaCog, FaEdit, FaCogs, FaPalette, FaQuestionCircle, FaComments } from 'react-icons/fa';
+import { FaHome, FaImages, FaTags, FaEnvelope, FaSignOutAlt, FaAd, FaCog, FaEdit, FaCogs, FaPalette, FaQuestionCircle, FaComments, FaVideo } from 'react-icons/fa';
 import { MdViewCarousel } from 'react-icons/md';
 import Image from 'next/image';
 
@@ -51,6 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { href: '/admin/categories', icon: FaTags, label: 'Categories' },
     { href: '/admin/slider', icon: MdViewCarousel, label: 'Hero Slider' },
     { href: '/admin/ads-slider', icon: FaAd, label: 'Ads Slider' },
+    { href: '/admin/videos', icon: FaVideo, label: 'Videos' },
     { href: '/admin/services', icon: FaCogs, label: 'Services' },
     { href: '/admin/blogs', icon: FaEdit, label: 'Blog Management' },
     { href: '/admin/testimonials', icon: FaComments, label: 'Testimonials' },
