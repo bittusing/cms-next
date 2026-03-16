@@ -21,6 +21,9 @@ const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSecti
 const VideoSection = dynamic(() => import('@/components/VideoSection'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-64"></div>
 });
+const FAQSection = dynamic(() => import('@/components/FAQSection'), {
+  loading: () => <div className="animate-pulse bg-gray-200 h-64"></div>
+});
 
 async function getSliders() {
   try {
@@ -285,24 +288,11 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* FAQs Preview Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-              <p className="text-xl text-gray-600">Quick answers to common questions</p>
-            </div>
-            <div className="text-center">
-              <Link
-                href="/faqs"
-                className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg"
-              >
-                View All FAQs
-                <FaArrowRight className="ml-2" />
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* FAQ Section */}
+        <FAQSection 
+          maxItems={6}
+          showViewAllButton={true}
+        />
 
         {/* Premium CTA */}
         <section className="py-24 bg-accent text-white relative overflow-hidden">
@@ -339,9 +329,6 @@ export default async function Home() {
           maxVideos={3}
           showCategories={false}
         />
-
-        {/* Moving Ads Section */}
-        <MovingAdsSection />
       </main>
       <Footer />
     </>

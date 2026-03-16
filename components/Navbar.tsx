@@ -18,10 +18,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[50] transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-        : 'bg-white/10 backdrop-blur-sm'
+        ? 'bg-white shadow-lg' 
+        : 'bg-white/95'
     }`}>
       <div className="container-custom">
         <div className="flex justify-between items-center h-20">
@@ -43,71 +43,43 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-8">
             <Link 
               href="/" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               Home
             </Link>
             <Link 
               href="/portfolio" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               Portfolio
             </Link>
             <Link 
               href="/about" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               About
             </Link>
             <Link 
               href="/services" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               Services
             </Link>
             <Link 
               href="/blogs" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               Blog
             </Link>
             <Link 
               href="/videos" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               Videos
             </Link>
             <Link 
               href="/faqs" 
-              className={`font-medium transition-colors ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-accent' 
-                  : 'text-gray-800 hover:text-accent'
-              }`}
+              className="font-medium text-gray-900 hover:text-accent transition-colors"
             >
               FAQs
             </Link>
@@ -121,9 +93,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden text-2xl transition-colors ${
-              isScrolled ? 'text-gray-700' : 'text-gray-800'
-            }`}
+            className="md:hidden text-2xl text-gray-900 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <FaTimes /> : <FaBars />}
@@ -132,7 +102,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-lg">
+          <div className="md:hidden pb-4 bg-white shadow-lg rounded-b-2xl">
             <Link href="/" className="block py-3 text-gray-700 hover:text-accent font-medium">
               Home
             </Link>
