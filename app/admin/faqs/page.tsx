@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AdminLayout from '@/components/AdminLayout';
 import { FaPlus, FaEdit, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 
@@ -31,11 +31,7 @@ export default function FAQsAdmin() {
     isActive: true
   });
 
-  useEffect(() => {
-    fetchFAQs();
-  }, [selectedCategory]);
-
-  const fetchFAQs = async () => {
+  const fetchFAQs = useCallback(async () => {
     try {
       const url = selectedCategory === 'all' ? '/api/faqs' : `/api/faqs?category=${selectedCategory}`;
       const response = await fetch(url);
@@ -48,7 +44,11 @@ export default function FAQsAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    fetchFAQs();
+  }, [fetchFAQs]);
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
@@ -164,7 +164,7 @@ export default function FAQsAdmin() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="flex-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 />
                 <button
                   onClick={handleSearch}

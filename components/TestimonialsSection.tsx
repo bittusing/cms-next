@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -32,22 +32,7 @@ export default function TestimonialsSection({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  useEffect(() => {
-    fetchTestimonials();
-  }, [serviceType]);
-
-  // Auto-play functionality for 3+ testimonials
-  useEffect(() => {
-    if (testimonials.length >= 3 && isAutoPlaying) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-      }, 4000); // Change every 4 seconds
-
-      return () => clearInterval(interval);
-    }
-  }, [testimonials.length, isAutoPlaying]);
-
-  const fetchTestimonials = async () => {
+  const fetchTestimonials = useCallback(async () => {
     try {
       let url = '/api/testimonials';
       const params = new URLSearchParams();
@@ -81,7 +66,22 @@ export default function TestimonialsSection({
     } finally {
       setLoading(false);
     }
-  };
+  }, [serviceType, showFeaturedOnly, maxItems]);
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, [fetchTestimonials]);
+
+  // Auto-play functionality for 3+ testimonials
+  useEffect(() => {
+    if (testimonials.length >= 3 && isAutoPlaying) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }, 4000); // Change every 4 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [testimonials.length, isAutoPlaying]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (

@@ -69,7 +69,7 @@ export default function FAQsPage() {
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Got Questions About Interior Designing Service in Delhi?
-                  <span className="block text-accent mt-2">We've Got Answers</span>
+                  <span className="block text-accent mt-2">We&apos;ve Got Answers</span>
                 </h1>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Explore our FAQs to understand the how, why, and what behind construction and interior works. Backed by professionals with 30+ years of industry exposure, each answer is crafted to help you choose the right solutions efficiently.

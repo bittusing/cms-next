@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
@@ -14,15 +14,11 @@ interface FAQ {
 }
 
 interface FAQSectionProps {
-  title?: string;
-  subtitle?: string;
   maxItems?: number;
   showViewAllButton?: boolean;
 }
 
 export default function FAQSection({
-  title = "Frequently Asked Questions",
-  subtitle = "Quick answers to common questions about our interior design services",
   maxItems = 8,
   showViewAllButton = true
 }: FAQSectionProps) {
@@ -30,11 +26,7 @@ export default function FAQSection({
   const [loading, setLoading] = useState(true);
   const [expandedFAQ, setExpandedFAQ] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchFAQs();
-  }, []);
-
-  const fetchFAQs = async () => {
+  const fetchFAQs = useCallback(async () => {
     try {
       const response = await fetch('/api/faqs');
       if (response.ok) {
@@ -52,7 +44,11 @@ export default function FAQSection({
     } finally {
       setLoading(false);
     }
-  };
+  }, [maxItems]);
+
+  useEffect(() => {
+    fetchFAQs();
+  }, [fetchFAQs]);
 
   const toggleFAQ = (faqId: string) => {
     setExpandedFAQ(expandedFAQ === faqId ? null : faqId);
@@ -85,7 +81,7 @@ export default function FAQSection({
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Got Questions About Interior Designing Service in Delhi?
-              <span className="block text-accent mt-2">We've Got Answers</span>
+              <span className="block text-accent mt-2">We&apos;ve Got Answers</span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               Explore our FAQs to understand the how, why, and what behind construction and interior works. Backed by professionals with 30+ years of industry exposure, each answer is crafted to help you choose the right solutions efficiently.

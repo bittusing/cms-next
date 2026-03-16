@@ -42,7 +42,7 @@ export default function VideosPage() {
               Ready to Start Your Own Success Story?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let's create something extraordinary together. Your dream space is just a conversation away.
+              Let&apos;s create something extraordinary together. Your dream space is just a conversation away.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

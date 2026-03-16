@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['res.cloudinary.com', 'images.unsplash.com', 'via.placeholder.com'],
+    domains: ['res.cloudinary.com', 'images.unsplash.com', 'via.placeholder.com', 'img.youtube.com'],
   },
   // Disable telemetry to avoid trace file issues
   experimental: {

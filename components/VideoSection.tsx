@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { FaPlay, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 interface Video {
@@ -41,11 +42,7 @@ export default function VideoSection({
 
   const categories = ['all', 'Interior Design', 'Client Testimonial', 'Project Showcase', 'Design Tips', 'Behind the Scenes'];
 
-  useEffect(() => {
-    fetchVideos();
-  }, [selectedCategory, featuredOnly]);
-
-  const fetchVideos = async () => {
+  const fetchVideos = useCallback(async () => {
     try {
       let url = '/api/videos';
       const params = new URLSearchParams();
@@ -78,7 +75,11 @@ export default function VideoSection({
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory, featuredOnly, maxVideos]);
+
+  useEffect(() => {
+    fetchVideos();
+  }, [fetchVideos]);
 
   const getYouTubeVideoId = (url: string): string | null => {
     const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
@@ -172,10 +173,11 @@ export default function VideoSection({
                 <div className="relative aspect-video bg-gray-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
                   {/* Thumbnail */}
                   {video.thumbnailUrl && (
-                    <img
+                    <Image
                       src={video.thumbnailUrl}
                       alt={video.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   )}
                   
@@ -247,7 +249,6 @@ export default function VideoSection({
                 src={getEmbedUrl(selectedVideo.youtubeUrl)}
                 title={selectedVideo.title}
                 className="w-full h-full"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />

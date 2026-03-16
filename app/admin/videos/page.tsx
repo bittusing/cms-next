@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AdminLayout from '@/components/AdminLayout';
+import Image from 'next/image';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaEyeSlash, FaStar, FaRegStar, FaYoutube } from 'react-icons/fa';
 
 interface Video {
@@ -34,11 +35,7 @@ export default function VideosAdmin() {
     order: 0
   });
 
-  useEffect(() => {
-    fetchVideos();
-  }, []);
-
-  const fetchVideos = async () => {
+  const fetchVideos = useCallback(async () => {
     try {
       const response = await fetch('/api/videos');
       if (response.ok) {
@@ -50,7 +47,11 @@ export default function VideosAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchVideos();
+  }, [fetchVideos]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -167,12 +168,6 @@ export default function VideosAdmin() {
     });
     setEditingVideo(null);
     setShowForm(false);
-  };
-
-  const getYouTubeVideoId = (url: string): string | null => {
-    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
   };
 
   if (loading) {
@@ -326,10 +321,11 @@ export default function VideosAdmin() {
                     {/* Video Thumbnail */}
                     <div className="relative aspect-video bg-gray-100">
                       {video.thumbnailUrl && (
-                        <img
+                        <Image
                           src={video.thumbnailUrl}
                           alt={video.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
                         />
                       )}
                       <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
