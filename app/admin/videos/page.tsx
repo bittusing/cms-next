@@ -183,14 +183,14 @@ export default function VideosAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Video Management</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Video Management</h1>
             <p className="text-gray-600">Manage YouTube videos for your website</p>
           </div>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-accent text-white px-6 py-3 rounded-lg hover:opacity-90 flex items-center gap-2"
+            className="bg-accent text-white px-4 sm:px-6 py-3 rounded-lg hover:opacity-90 flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             <FaPlus /> Add Video
           </button>
@@ -315,7 +315,7 @@ export default function VideosAdmin() {
                 <p className="text-gray-400">Add your first video to get started</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {videos.map((video) => (
                   <div key={video._id} className="border border-gray-200 rounded-lg overflow-hidden">
                     {/* Video Thumbnail */}
@@ -329,7 +329,7 @@ export default function VideosAdmin() {
                         />
                       )}
                       <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <FaYoutube className="text-white text-4xl" />
+                        <FaYoutube className="text-white text-3xl sm:text-4xl" />
                       </div>
                       {video.isFeatured && (
                         <div className="absolute top-2 left-2 bg-accent text-white px-2 py-1 rounded text-xs font-bold">
@@ -344,48 +344,48 @@ export default function VideosAdmin() {
                     </div>
                     
                     {/* Video Info */}
-                    <div className="p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <div className="p-3 sm:p-4">
+                      <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 text-sm sm:text-base">
                         {video.title}
                       </h3>
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                        <span>{video.category}</span>
+                      <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500 mb-3">
+                        <span className="truncate">{video.category}</span>
                         <span>Order: {video.order}</span>
                       </div>
                       
                       {/* Action Buttons */}
-                      <div className="flex gap-2">
+                      <div className="flex gap-1 sm:gap-2">
                         <button
                           onClick={() => handleEdit(video)}
-                          className="flex-1 bg-blue-500 text-white px-3 py-2 rounded text-sm hover:bg-blue-600 flex items-center justify-center gap-1"
+                          className="flex-1 bg-blue-500 text-white px-2 sm:px-3 py-2 rounded text-xs sm:text-sm hover:bg-blue-600 flex items-center justify-center gap-1"
                         >
-                          <FaEdit /> Edit
+                          <FaEdit className="text-xs" /> <span className="hidden sm:inline">Edit</span>
                         </button>
                         <button
                           onClick={() => toggleActive(video)}
-                          className={`px-3 py-2 rounded text-sm flex items-center justify-center ${
+                          className={`px-2 sm:px-3 py-2 rounded text-xs sm:text-sm flex items-center justify-center ${
                             video.isActive 
                               ? 'bg-green-500 hover:bg-green-600 text-white' 
                               : 'bg-gray-500 hover:bg-gray-600 text-white'
                           }`}
                         >
-                          {video.isActive ? <FaEye /> : <FaEyeSlash />}
+                          {video.isActive ? <FaEye className="text-xs" /> : <FaEyeSlash className="text-xs" />}
                         </button>
                         <button
                           onClick={() => toggleFeatured(video)}
-                          className={`px-3 py-2 rounded text-sm flex items-center justify-center ${
+                          className={`px-2 sm:px-3 py-2 rounded text-xs sm:text-sm flex items-center justify-center ${
                             video.isFeatured 
                               ? 'bg-yellow-500 hover:bg-yellow-600 text-white' 
                               : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
                           }`}
                         >
-                          {video.isFeatured ? <FaStar /> : <FaRegStar />}
+                          {video.isFeatured ? <FaStar className="text-xs" /> : <FaRegStar className="text-xs" />}
                         </button>
                         <button
                           onClick={() => handleDelete(video._id)}
-                          className="px-3 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600 flex items-center justify-center"
+                          className="px-2 sm:px-3 py-2 bg-red-500 text-white rounded text-xs sm:text-sm hover:bg-red-600 flex items-center justify-center"
                         >
-                          <FaTrash />
+                          <FaTrash className="text-xs" />
                         </button>
                       </div>
                     </div>

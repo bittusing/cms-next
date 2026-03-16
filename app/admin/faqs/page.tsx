@@ -143,11 +143,11 @@ export default function FAQsAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">FAQs Management</h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">FAQs Management</h1>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             <FaPlus /> Add New FAQ
           </button>
@@ -155,20 +155,20 @@ export default function FAQsAdmin() {
 
         {/* Search and Filter */}
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col gap-4">
             <div className="flex-1">
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
                   placeholder="Search FAQs..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="flex-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 />
                 <button
                   onClick={handleSearch}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center gap-2"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center justify-center gap-2 text-sm"
                 >
                   <FaSearch /> Search
                 </button>
@@ -179,7 +179,7 @@ export default function FAQsAdmin() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm flex-1 sm:flex-none"
               >
                 <option value="all">All Categories</option>
                 {categories.map(cat => (
@@ -269,7 +269,40 @@ export default function FAQsAdmin() {
         )}
         {/* FAQs List */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="overflow-x-auto">
+          {/* Mobile Card View */}
+          <div className="block sm:hidden">
+            {faqs.map((faq) => (
+              <div key={faq._id} className="border-b border-gray-200 p-4">
+                <div className="space-y-3">
+                  <h3 className="font-medium text-gray-900 text-sm">{faq.question}</h3>
+                  <p className="text-gray-600 text-xs line-clamp-2">{faq.answer}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      {faq.category}
+                    </span>
+                    <span className="text-xs text-gray-500">Order: {faq.order}</span>
+                  </div>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => handleEdit(faq)}
+                      className="flex-1 text-blue-600 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded text-xs font-medium transition-colors"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(faq._id)}
+                      className="flex-1 text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 px-3 py-2 rounded text-xs font-medium transition-colors"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>

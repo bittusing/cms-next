@@ -24,9 +24,9 @@ export default function Navbar() {
         : 'bg-white/95'
     }`}>
       <div className="container-custom">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           <Link href="/" className="flex items-center">
-            <div className="relative w-56 h-20">
+            <div className="relative w-40 sm:w-56 h-16 sm:h-20">
               <Image
                 src="/logo.png"
                 alt="Urban Design India"
@@ -102,31 +102,74 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 bg-white shadow-lg rounded-b-2xl">
-            <Link href="/" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              Home
-            </Link>
-            <Link href="/portfolio" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              Portfolio
-            </Link>
-            <Link href="/about" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              About
-            </Link>
-            <Link href="/services" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              Services
-            </Link>
-            <Link href="/blogs" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              Blog
-            </Link>
-            <Link href="/videos" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              Videos
-            </Link>
-            <Link href="/faqs" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              FAQs
-            </Link>
-            <Link href="/contact" className="block py-3 text-gray-700 hover:text-accent font-medium">
-              Contact
-            </Link>
+          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg rounded-b-2xl border-t border-gray-100 z-50">
+            <div className="px-4 py-2 space-y-1">
+              <Link 
+                href="/" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/portfolio" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Portfolio
+              </Link>
+              <Link 
+                href="/about" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                href="/services" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
+              <Link 
+                href="/blogs" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link 
+                href="/videos" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Videos
+              </Link>
+              <Link 
+                href="/faqs" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                FAQs
+              </Link>
+              <Link 
+                href="/contact" 
+                className="block py-3 px-4 text-gray-700 hover:text-accent hover:bg-gray-50 font-medium rounded-lg transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </Link>
+              <div className="pt-2 pb-2">
+                <Link 
+                  href="/contact" 
+                  className="block py-3 px-4 bg-accent text-white text-center rounded-lg font-medium hover:opacity-90 transition-all"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Get A Quote
+                </Link>
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { FaHome, FaImages, FaTags, FaEnvelope, FaSignOutAlt, FaAd, FaCog, FaEdit, FaCogs, FaPalette, FaQuestionCircle, FaComments, FaVideo } from 'react-icons/fa';
+import { FaHome, FaImages, FaTags, FaEnvelope, FaSignOutAlt, FaAd, FaCog, FaEdit, FaCogs, FaPalette, FaQuestionCircle, FaComments, FaVideo, FaBars, FaTimes } from 'react-icons/fa';
 import { MdViewCarousel } from 'react-icons/md';
 import Image from 'next/image';
 
@@ -11,6 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     async function checkAuth() {
@@ -63,9 +64,41 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="flex min-h-screen bg-gray-100">
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white shadow-md z-50 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="relative w-8 h-8">
+            <Image
+              src="/logo.png"
+              alt="Admin"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <h1 className="text-lg font-bold text-gray-900">Admin Panel</h1>
+        </div>
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="text-gray-600 hover:text-gray-900 text-xl"
+        >
+          {sidebarOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-2xl">
-        <div className="p-6 border-b border-gray-700">
+      <aside className={`
+        fixed lg:static inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-2xl transform transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+      `}>
+        <div className="p-6 border-b border-gray-700 mt-16 lg:mt-0">
           <div className="flex items-center space-x-3">
             <div className="relative w-10 h-10">
               <Image
@@ -81,11 +114,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
           </div>
         </div>
-        <nav className="mt-6">
+        <nav className="mt-6 pb-20 overflow-y-auto">
           {menuItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setSidebarOpen(false)}
               className={`flex items-center px-6 py-3 hover:bg-white hover:bg-opacity-10 transition-all duration-200 border-l-4 border-transparent hover:border-amber-500 ${
                 pathname === item.href ? 'bg-white bg-opacity-10 border-amber-500 text-amber-400' : 'text-gray-300 hover:text-white'
               }`}
@@ -107,8 +141,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-gray-50">
-        <div className="p-8">
+      <main className="flex-1 bg-gray-50 lg:ml-0">
+        <div className="p-4 lg:p-8 pt-20 lg:pt-8">
           {children}
         </div>
       </main>

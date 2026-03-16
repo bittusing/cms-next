@@ -215,14 +215,14 @@ export default function VideoSection({
 
       {/* Video Modal */}
       {selectedVideo && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-2 sm:p-4">
           <div className="relative w-full max-w-6xl">
             {/* Close Button - Fixed position */}
             <button
               onClick={closeVideo}
-              className="fixed top-4 right-4 w-12 h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center text-white hover:text-red-400 transition-all duration-300 z-[60]"
+              className="fixed top-2 sm:top-4 right-2 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center text-white hover:text-red-400 transition-all duration-300 z-[60]"
             >
-              <FaTimes className="text-xl" />
+              <FaTimes className="text-lg sm:text-xl" />
             </button>
 
             {/* Navigation Buttons */}
@@ -230,15 +230,15 @@ export default function VideoSection({
               <>
                 <button
                   onClick={prevVideo}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center text-white hover:text-accent transition-all duration-300 z-10"
+                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center text-white hover:text-accent transition-all duration-300 z-10"
                 >
-                  <FaChevronLeft className="text-xl" />
+                  <FaChevronLeft className="text-lg sm:text-xl" />
                 </button>
                 <button
                   onClick={nextVideo}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center text-white hover:text-accent transition-all duration-300 z-10"
+                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center text-white hover:text-accent transition-all duration-300 z-10"
                 >
-                  <FaChevronRight className="text-xl" />
+                  <FaChevronRight className="text-lg sm:text-xl" />
                 </button>
               </>
             )}
@@ -255,9 +255,9 @@ export default function VideoSection({
             </div>
 
             {/* Video Info */}
-            <div className="mt-6 text-white text-center">
-              <h3 className="text-2xl font-bold mb-2">{selectedVideo.title}</h3>
-              <div className="mt-4 text-sm text-gray-400">
+            <div className="mt-4 sm:mt-6 text-white text-center px-4">
+              <h3 className="text-lg sm:text-2xl font-bold mb-2">{selectedVideo.title}</h3>
+              <div className="mt-2 sm:mt-4 text-xs sm:text-sm text-gray-400">
                 {currentIndex + 1} of {videos.length} videos
               </div>
             </div>
