@@ -108,7 +108,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
       </div>
 
       {/* Floating Stats */}
-      <div className="absolute bottom-20 right-8 z-10 hidden lg:block">
+      {/* <div className="absolute bottom-20 right-8 z-10 hidden lg:block">
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
           <div className="flex space-x-8">
             <div className="text-center">
@@ -125,7 +125,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

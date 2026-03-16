@@ -12,9 +12,6 @@ const ProjectCardModal = dynamic(() => import('@/components/ProjectCardModal'), 
 const HeroSlider = dynamic(() => import('@/components/HeroSlider'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-screen"></div>
 });
-const MovingAdsSection = dynamic(() => import('@/components/MovingAdsSection'), {
-  loading: () => <div className="animate-pulse bg-gray-200 h-32"></div>
-});
 const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
   loading: () => <div className="animate-pulse bg-gray-200 h-64"></div>
 });
