@@ -117,12 +117,12 @@ export default async function Home() {
                     Explore Our Work
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <button className="group flex items-center text-white text-base sm:text-lg font-semibold hover:text-accent transition-colors w-full sm:w-auto justify-center">
+                  {/* <button className="group flex items-center text-white text-base sm:text-lg font-semibold hover:text-accent transition-colors w-full sm:w-auto justify-center">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white group-hover:border-accent flex items-center justify-center mr-3 transition-colors">
                       <FaPlay className="ml-1" />
                     </div>
                     Watch Our Story
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

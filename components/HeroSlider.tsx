@@ -65,12 +65,12 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
                     Explore Our Work
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <button className="group flex items-center text-white text-lg font-semibold hover:text-accent transition-colors">
+                  {/* <button className="group flex items-center text-white text-lg font-semibold hover:text-accent transition-colors">
                     <div className="w-12 h-12 rounded-full border-2 border-white group-hover:border-accent flex items-center justify-center mr-3 transition-colors">
                       <FaPlay className="ml-1" />
                     </div>
                     Watch Our Story
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
