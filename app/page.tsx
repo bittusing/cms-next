@@ -214,7 +214,7 @@ export default async function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div 
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden hover:bg-gradient-to-br hover:from-accent/5 hover:to-accent/10"
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
@@ -235,7 +235,7 @@ export default async function Home() {
               </div>
 
               <div 
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden hover:bg-gradient-to-br hover:from-accent/5 hover:to-accent/10"
                 data-aos="fade-up"
                 data-aos-delay="200"
               >
@@ -256,7 +256,7 @@ export default async function Home() {
               </div>
 
               <div 
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden hover:bg-gradient-to-br hover:from-accent/5 hover:to-accent/10"
                 data-aos="fade-up"
                 data-aos-delay="300"
               >

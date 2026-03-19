@@ -114,7 +114,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
         </div>
-        <div className="p-4 bg-white group-hover:bg-gray-50 transition-colors duration-300">
+        <div className="p-4 bg-white group-hover:bg-gradient-to-br group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-300">
           <p className="text-sm text-accent mb-2 group-hover:text-accent transition-colors duration-300">{project.category.name}</p>
           <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">
             {project.title}

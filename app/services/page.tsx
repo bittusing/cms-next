@@ -105,7 +105,7 @@ export default function ServicesPage() {
               {services.map((service, index) => (
                 <div 
                   key={service._id} 
-                  className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 ${
+                  className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 hover:bg-gradient-to-br hover:from-accent/5 hover:to-accent/10 ${
                     index % 2 === 0 ? 'md:translate-y-0' : 'md:translate-y-8'
                   }`}
                   data-aos="fade-up"
