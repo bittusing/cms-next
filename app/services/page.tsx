@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import AnimatedHomepage from '@/components/AnimatedHomepage';
 
 interface Service {
   _id: string;
@@ -13,35 +14,6 @@ interface Service {
   order: number;
   isActive: boolean;
 }
-
-// Static process steps as requested
-const staticProcessSteps = [
-  {
-    stepNumber: 1,
-    title: "Consultation & Planning",
-    description: "We begin with understanding your vision, requirements, and budget to create a comprehensive design plan."
-  },
-  {
-    stepNumber: 2,
-    title: "Design Development",
-    description: "Our team creates detailed designs, 3D visualizations, and material selections tailored to your preferences."
-  },
-  {
-    stepNumber: 3,
-    title: "Material Selection",
-    description: "We help you choose the perfect materials, colors, and finishes that align with your style and budget."
-  },
-  {
-    stepNumber: 4,
-    title: "Project Execution",
-    description: "Our skilled craftsmen bring the design to life with precision, quality workmanship, and attention to detail."
-  },
-  {
-    stepNumber: 5,
-    title: "Final Delivery",
-    description: "We complete the project with final touches, quality checks, and handover your dream space ready to enjoy."
-  }
-];
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
@@ -79,21 +51,33 @@ export default function ServicesPage() {
   }
 
   return (
-    <>
+    <AnimatedHomepage>
       <Navbar />
       <main className="pt-16">
         {/* Hero Section */}
         <div className="bg-gradient-to-br from-primary via-primary to-gray-800 text-white py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-10"></div>
           <div className="container-custom text-center relative z-10">
-            <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
+            <div 
+              className="text-accent text-sm font-semibold tracking-wider uppercase mb-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               PROFESSIONAL INTERIOR DESIGN
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 
+              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               Transform Your Space with
               <span className="block text-accent mt-2">Expert Design Solutions</span>
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            <p 
+              className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               From concept to completion, we create stunning interiors that reflect your personality and enhance your lifestyle
             </p>
           </div>
@@ -102,7 +86,10 @@ export default function ServicesPage() {
         {/* Services Grid */}
         <section className="py-20 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-16">
+            <div 
+              className="text-center mb-16"
+              data-aos="fade-up"
+            >
               <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 OUR SERVICES
               </div>
@@ -118,29 +105,33 @@ export default function ServicesPage() {
               {services.map((service, index) => (
                 <div 
                   key={service._id} 
-                  className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden ${
+                  className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 ${
                     index % 2 === 0 ? 'md:translate-y-0' : 'md:translate-y-8'
                   }`}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
                 >
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="p-8">
+                  {/* Subtle background overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="p-8 relative z-10">
                     <div className="flex items-center mb-6">
-                      <div className="w-12 h-12 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mr-4">
-                        <div className="w-6 h-6 bg-accent rounded-full"></div>
+                      <div className="w-12 h-12 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                        <div className="w-6 h-6 bg-accent rounded-full group-hover:bg-white transition-colors duration-300"></div>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900 group-hover:text-accent transition-colors duration-300">
                         {service.title}
                       </h3>
                     </div>
                     <div 
-                      className="text-gray-700 mb-6 leading-relaxed"
+                      className="text-gray-700 mb-6 leading-relaxed group-hover:text-gray-800 transition-colors duration-300"
                       dangerouslySetInnerHTML={{ __html: service.description }}
                     />
                     <ul className="space-y-3">
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start text-gray-600">
-                          <div className="w-5 h-5 bg-accent bg-opacity-20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
-                            <span className="text-accent text-xs font-bold">✓</span>
+                        <li key={idx} className="flex items-start text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                          <div className="w-5 h-5 bg-accent bg-opacity-20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <span className="text-accent text-xs font-bold group-hover:text-white transition-colors duration-300">✓</span>
                           </div>
                           <span className="leading-relaxed">{feature}</span>
                         </li>
@@ -156,7 +147,10 @@ export default function ServicesPage() {
         {/* Process Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container-custom">
-            <div className="text-center mb-16">
+            <div 
+              className="text-center mb-16"
+              data-aos="fade-up"
+            >
               <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 OUR PROCESS
               </div>
@@ -168,11 +162,15 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            {/* Process Steps - Full Width Connected Design */}
-            <div className="max-w-5xl mx-auto space-y-1">
+            {/* Process Steps - Full Width Connected Design with NO gaps */}
+            <div className="max-w-5xl mx-auto space-y-0">
               {/* Step 1 - Left title, Right description */}
-              <div className="flex items-center w-full">
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-3 flex-1 mr-2">
+              <div 
+                className="flex items-center w-full"
+                data-aos="fade-right"
+                data-aos-delay="100"
+              >
+                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1">
                   <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">
                     1
                   </div>
@@ -180,21 +178,25 @@ export default function ServicesPage() {
                     Consultation & Understanding
                   </h3>
                 </div>
-                <div className="bg-accent text-white rounded-full px-6 py-3 flex-1">
+                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1">
                   <p className="text-center text-sm">
-                    We explore your ideas, preferences, and functional requirements. Consultation & Understanding
+                    We explore your ideas, preferences, and functional requirements
                   </p>
                 </div>
               </div>
 
               {/* Step 2 - Left description, Right title */}
-              <div className="flex items-center w-full">
-                <div className="bg-accent text-white rounded-full px-6 py-3 flex-1 mr-2">
+              <div 
+                className="flex items-center w-full"
+                data-aos="fade-left"
+                data-aos-delay="200"
+              >
+                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1">
                   <p className="text-center text-sm">
-                    Creative planning with mood boards, layouts, and visual direction.
+                    Creative planning with mood boards, layouts, and visual direction
                   </p>
                 </div>
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-3 flex-1">
+                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1">
                   <h3 className="font-bold text-gray-900 text-lg mr-4">
                     Concept Development
                   </h3>
@@ -205,8 +207,12 @@ export default function ServicesPage() {
               </div>
 
               {/* Step 3 - Left title, Right description */}
-              <div className="flex items-center w-full">
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-3 flex-1 mr-2">
+              <div 
+                className="flex items-center w-full"
+                data-aos="fade-right"
+                data-aos-delay="300"
+              >
+                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1">
                   <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">
                     3
                   </div>
@@ -214,21 +220,25 @@ export default function ServicesPage() {
                     2D & 3D Visualization
                   </h3>
                 </div>
-                <div className="bg-accent text-white rounded-full px-6 py-3 flex-1">
+                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1">
                   <p className="text-center text-sm">
-                    Realistic renderings for clarity and refinement.
+                    Realistic renderings for clarity and refinement
                   </p>
                 </div>
               </div>
 
               {/* Step 4 - Left description, Right title */}
-              <div className="flex items-center w-full">
-                <div className="bg-accent text-white rounded-full px-6 py-3 flex-1 mr-2">
+              <div 
+                className="flex items-center w-full"
+                data-aos="fade-left"
+                data-aos-delay="400"
+              >
+                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1">
                   <p className="text-center text-sm">
-                    Precise implementation with strict quality control.
+                    Precise implementation with strict quality control
                   </p>
                 </div>
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-3 flex-1">
+                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1">
                   <h3 className="font-bold text-gray-900 text-lg mr-4">
                     Execution & Supervision
                   </h3>
@@ -239,8 +249,12 @@ export default function ServicesPage() {
               </div>
 
               {/* Step 5 - Left title, Right description */}
-              <div className="flex items-center w-full">
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-3 flex-1 mr-2">
+              <div 
+                className="flex items-center w-full"
+                data-aos="fade-right"
+                data-aos-delay="500"
+              >
+                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1">
                   <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">
                     5
                   </div>
@@ -248,9 +262,9 @@ export default function ServicesPage() {
                     Final Styling & Handover
                   </h3>
                 </div>
-                <div className="bg-accent text-white rounded-full px-6 py-3 flex-1">
+                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1">
                   <p className="text-center text-sm">
-                    A perfectly finished space ready to inspire.
+                    A perfectly finished space ready to inspire
                   </p>
                 </div>
               </div>
@@ -261,15 +275,24 @@ export default function ServicesPage() {
         {/* Call to Action */}
         <section className="py-20 bg-primary text-white">
           <div className="container-custom text-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            <h2 
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+              data-aos="fade-up"
+            >
               Ready to Transform Your Space?
             </h2>
-            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            <p 
+              className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               Let&apos;s discuss your project and create something amazing together
             </p>
             <a 
               href="/contact" 
-              className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 btn-hover-slide relative overflow-hidden"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               Get Started Today
               <span className="ml-2">→</span>
@@ -281,6 +304,6 @@ export default function ServicesPage() {
         <TestimonialsSection serviceType="All" maxItems={4} />
       </main>
       <Footer />
-    </>
+    </AnimatedHomepage>
   );
 }

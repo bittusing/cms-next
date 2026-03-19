@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import AnimatedHomepage from '@/components/AnimatedHomepage';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaAward, FaUsers, FaArrowRight, FaPlay } from 'react-icons/fa';
+import { FaAward, FaUsers, FaArrowRight } from 'react-icons/fa';
 
 // Lazy load components for better performance
 const ProjectCardModal = dynamic(() => import('@/components/ProjectCardModal'), {
@@ -73,7 +74,7 @@ export default async function Home() {
   const featuredProjects = projects.slice(0, 6);
 
   return (
-    <>
+    <AnimatedHomepage>
       <Navbar />
       <main className="pt-16">
         {/* Dynamic Hero Slider */}
@@ -99,35 +100,39 @@ export default async function Home() {
 
             <div className="relative z-10 container-custom text-center text-white">
               <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                <h1 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
                   Luxury Interior
                   <span className="block text-accent">
                     Design Excellence
                   </span>
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed px-4 sm:px-0">
+                <p 
+                  className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed px-4 sm:px-0"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                >
                   Creating extraordinary spaces that reflect your vision and elevate your lifestyle. 
                   Where sophistication meets functionality.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
+                <div 
+                  className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0"
+                  data-aos="fade-up"
+                  data-aos-delay="600"
+                >
                   <Link
                     href="/portfolio"
-                    className="group bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center shadow-2xl w-full sm:w-auto justify-center"
+                    className="group bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center shadow-2xl w-full sm:w-auto justify-center btn-hover-slide relative overflow-hidden transform hover:-translate-y-1"
                   >
                     Explore Our Work
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  {/* <button className="group flex items-center text-white text-base sm:text-lg font-semibold hover:text-accent transition-colors w-full sm:w-auto justify-center">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white group-hover:border-accent flex items-center justify-center mr-3 transition-colors">
-                      <FaPlay className="ml-1" />
-                    </div>
-                    Watch Our Story
-                  </button> */}
                 </div>
               </div>
             </div>
-
-
           </section>
         )}
 
@@ -135,7 +140,7 @@ export default async function Home() {
         <section className="py-24 bg-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
+              <div data-aos="fade-right">
                 <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                   About Urban Design India
                 </div>
@@ -172,7 +177,7 @@ export default async function Home() {
                   <FaArrowRight className="ml-2" />
                 </Link>
               </div>
-              <div className="relative">
+              <div className="relative" data-aos="fade-left">
                 <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
@@ -193,7 +198,10 @@ export default async function Home() {
         {/* Premium Services */}
         <section className="py-24 bg-gray-50">
           <div className="container-custom">
-            <div className="text-center mb-16">
+            <div 
+              className="text-center mb-16"
+              data-aos="fade-up"
+            >
               <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Expertise
               </div>
@@ -205,43 +213,67 @@ export default async function Home() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <div className="text-2xl text-white">🏠</div>
+              <div 
+                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                {/* Subtle background overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <div className="text-2xl text-white">🏠</div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-colors duration-300">Residential Design</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    Transform your home into a sanctuary of luxury and comfort with our bespoke residential design solutions.
+                  </p>
+                  <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center group-hover:translate-x-2 duration-300">
+                    Learn More <FaArrowRight className="ml-2 text-sm group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Residential Design</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Transform your home into a sanctuary of luxury and comfort with our bespoke residential design solutions.
-                </p>
-                <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center">
-                  Learn More <FaArrowRight className="ml-2 text-sm" />
-                </Link>
               </div>
 
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <div className="text-2xl text-white">🏢</div>
+              <div 
+                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                {/* Subtle background overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <div className="text-2xl text-white">🏢</div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-colors duration-300">Commercial Design</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    Create inspiring workspaces that enhance productivity and reflect your brand&apos;s identity and values.
+                  </p>
+                  <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center group-hover:translate-x-2 duration-300">
+                    Learn More <FaArrowRight className="ml-2 text-sm group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Commercial Design</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Create inspiring workspaces that enhance productivity and reflect your brand&apos;s identity and values.
-                </p>
-                <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center">
-                  Learn More <FaArrowRight className="ml-2 text-sm" />
-                </Link>
               </div>
 
-              <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <div className="text-2xl text-white">✨</div>
+              <div 
+                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                {/* Subtle background overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <div className="text-2xl text-white">✨</div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-colors duration-300">Luxury Renovation</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    Breathe new life into your existing spaces with our comprehensive renovation and restoration services.
+                  </p>
+                  <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center group-hover:translate-x-2 duration-300">
+                    Learn More <FaArrowRight className="ml-2 text-sm group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Luxury Renovation</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Breathe new life into your existing spaces with our comprehensive renovation and restoration services.
-                </p>
-                <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-colors flex items-center">
-                  Learn More <FaArrowRight className="ml-2 text-sm" />
-                </Link>
               </div>
             </div>
           </div>
@@ -250,7 +282,10 @@ export default async function Home() {
         {/* Featured Projects */}
         <section className="py-24 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-16">
+            <div 
+              className="text-center mb-16"
+              data-aos="fade-up"
+            >
               <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Portfolio
               </div>
@@ -263,14 +298,24 @@ export default async function Home() {
             {featuredProjects.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {featuredProjects.map((project: any) => (
-                    <ProjectCardModal key={project._id} project={project} />
+                  {featuredProjects.map((project: any, index: number) => (
+                    <div
+                      key={project._id}
+                      data-aos="fade-up"
+                      data-aos-delay={index * 100}
+                    >
+                      <ProjectCardModal project={project} />
+                    </div>
                   ))}
                 </div>
-                <div className="text-center mt-12">
+                <div 
+                  className="text-center mt-12"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                >
                   <Link
                     href="/portfolio"
-                    className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl"
+                    className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl btn-hover-slide relative overflow-hidden transform hover:-translate-y-1"
                   >
                     View All Projects
                     <FaArrowRight className="ml-2" />
@@ -295,21 +340,34 @@ export default async function Home() {
         <section className="py-24 bg-accent text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-20"></div>
           <div className="container-custom text-center relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Space?</h2>
-            <p className="text-xl mb-8 text-white opacity-80 max-w-2xl mx-auto">
+            <h2 
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+              data-aos="fade-up"
+            >
+              Ready to Transform Your Space?
+            </h2>
+            <p 
+              className="text-xl mb-8 text-white opacity-80 max-w-2xl mx-auto"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               Let&apos;s collaborate to create something extraordinary. Your dream space is just a conversation away.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
+            <div 
+              className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <Link
                 href="/contact"
-                className="inline-flex items-center bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center"
+                className="inline-flex items-center bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center btn-hover-slide relative overflow-hidden transform hover:-translate-y-1"
               >
                 Start Your Project
                 <FaArrowRight className="ml-2" />
               </Link>
               <Link
                 href="/portfolio"
-                className="inline-flex items-center border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300 w-full sm:w-auto justify-center"
+                className="inline-flex items-center border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300 w-full sm:w-auto justify-center transform hover:-translate-y-1"
               >
                 View Our Work
               </Link>
@@ -328,6 +386,6 @@ export default async function Home() {
         />
       </main>
       <Footer />
-    </>
+    </AnimatedHomepage>
   );
 }

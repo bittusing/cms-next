@@ -77,7 +77,7 @@ export default function TestimonialsSection({
     if (testimonials.length >= 3 && isAutoPlaying) {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-      }, 4000); // Change every 4 seconds
+      }, 3000); // Made faster - 3 seconds instead of 4
 
       return () => clearInterval(interval);
     }
@@ -138,7 +138,7 @@ export default function TestimonialsSection({
               >
                 {testimonials.map((testimonial) => (
                   <div key={testimonial._id} className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
-                    <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow h-full">
+                    <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:bg-white">
                       <div className="flex items-center mb-4">
                         {testimonial.image && (
                           <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -172,10 +172,26 @@ export default function TestimonialsSection({
               </div>
             </div>
 
+            {/* Vertical Navigation on Left */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col space-y-3 z-10 -ml-6">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'w-4 h-4 bg-accent rounded-full scale-125' 
+                      : 'w-3 h-3 bg-gray-300 rounded-full hover:bg-gray-400 hover:scale-110'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors z-10"
             >
               <FaChevronLeft className="text-accent" />
             </button>
@@ -203,7 +219,7 @@ export default function TestimonialsSection({
           /* Static Grid for less than 3 testimonials */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial) => (
-              <div key={testimonial._id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <div key={testimonial._id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group hover:bg-white">
                 <div className="flex items-center mb-4">
                   {testimonial.image && (
                     <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">

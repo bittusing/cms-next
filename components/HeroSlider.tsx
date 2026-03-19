@@ -18,7 +18,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 4000); // Made faster - 4 seconds instead of 6
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -78,10 +78,26 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         </div>
       ))}
 
+      {/* Vertical Navigation on Left */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col space-y-4 z-10">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`transition-all duration-300 ${
+              index === current 
+                ? 'w-6 h-6 bg-accent rounded-full scale-125' 
+                : 'w-4 h-4 bg-white/50 rounded-full hover:bg-white/70 hover:scale-110'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
       {/* Navigation Buttons */}
-      <button
+      {/* <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+        className="absolute left-20 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
       >
         <FaChevronLeft className="text-xl" />
       </button>
@@ -90,7 +106,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
       >
         <FaChevronRight className="text-xl" />
-      </button>
+      </button> */}
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
