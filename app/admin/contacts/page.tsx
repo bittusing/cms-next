@@ -16,6 +16,7 @@ export default function AdminContactsPage() {
     try {
       const res = await fetch('/api/contact');
       const data = await res.json();
+      console.log('Fetched contacts:', data); // Debug log
       setContacts(data);
     } catch (error) {
       console.error('Failed to fetch contacts:', error);
@@ -53,6 +54,8 @@ export default function AdminContactsPage() {
 
         {loading ? (
           <p>Loading...</p>
+        ) : contacts.length === 0 ? (
+          <p className="text-gray-600">No contact messages found.</p>
         ) : (
           <div className="space-y-4">
             {contacts.map((contact: any) => (
@@ -65,8 +68,34 @@ export default function AdminContactsPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-bold">{contact.name}</h3>
-                    <p className="text-gray-600">{contact.email}</p>
+                    {contact.email && <p className="text-gray-600">{contact.email}</p>}
                     <p className="text-gray-600">{contact.phone}</p>
+                    
+                    {/* Service Information - Always show if service exists */}
+                    {contact?.service && (
+                      <div className="mt-3">
+                        <p className="text-sm font-semibold text-gray-700 mb-2">Service Requirements:</p>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="inline-block bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">
+                            📋 {contact.service}
+                          </span>
+                          {contact.subService && (
+                            <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                              🎯 {contact.subService}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Debug Info - Remove this after testing */}
+                    {/* <div className="mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs">
+                      <strong>Debug Data:</strong><br/>
+                      Service: "{contact.service || 'null'}"<br/>
+                      SubService: "{contact.subService || 'null'}"<br/>
+                      Has Service: {contact.service ? 'YES' : 'NO'}<br/>
+                      Has SubService: {contact.subService ? 'YES' : 'NO'}
+                    </div> */}
                   </div>
                   <div className="flex items-center space-x-2">
                     {!contact.isRead && (
@@ -85,7 +114,7 @@ export default function AdminContactsPage() {
                     </button>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-2">{contact.message}</p>
+                {contact.message && <p className="text-gray-700 mb-2">{contact.message}</p>}
                 <p className="text-sm text-gray-500">
                   {new Date(contact.createdAt).toLocaleString()}
                 </p>

@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PortfolioClient from './PortfolioClient';
 import PortfolioHeroSlider from '@/components/PortfolioHeroSlider';
+import AnimatedPage from '@/components/AnimatedPage';
 
 async function getProjects() {
   try {
@@ -53,7 +54,7 @@ export default async function PortfolioPage() {
   ]);
 
   return (
-    <>
+    <AnimatedPage>
       <Navbar />
       <main className="pt-16">
         {/* Portfolio Hero Slider */}
@@ -62,6 +63,6 @@ export default async function PortfolioPage() {
         <PortfolioClient initialProjects={projects} initialCategories={categories} />
       </main>
       <Footer />
-    </>
+    </AnimatedPage>
   );
 }

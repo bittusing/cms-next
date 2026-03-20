@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { FaAward, FaUsers, FaLightbulb, FaHandshake, FaArrowRight, FaQuoteLeft, FaCheck } from 'react-icons/fa';
+import AnimatedPage from '@/components/AnimatedPage';
 
 export const metadata: Metadata = {
   title: 'About Us | Urban Design India',
@@ -12,10 +13,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const achievements = [
-    { number: '500+', label: 'Projects Completed', icon: '🏠' },
-    { number: '18+', label: 'Years Experience', icon: '⭐' },
-    { number: '98%', label: 'Client Satisfaction', icon: '❤️' },
-    { number: '50+', label: 'Team Members', icon: '👥' }
+    { number: '500', label: 'Projects Completed', icon: '🏠' },
+    { number: '18', label: 'Years Experience', icon: '⭐' },
+    { number: '98', label: 'Client Satisfaction', icon: '❤️' },
+    { number: '50', label: 'Team Members', icon: '👥' }
   ];
 
   const values = [
@@ -53,12 +54,12 @@ export default function AboutPage() {
   ];
 
   return (
-    <>
+    <AnimatedPage>
       <Navbar />
       <main className="pt-16">
         {/* Hero Section */}
         <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0" data-parallax="0.5">
             <Image
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop"
               alt="About Urban Design India"
@@ -71,16 +72,28 @@ export default function AboutPage() {
           
           <div className="relative z-10 container-custom text-center text-white">
             <div className="max-w-4xl mx-auto">
-              <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4 animate-fade-in-up">
+              <div 
+                className="text-accent text-sm font-semibold tracking-wider uppercase mb-4"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
                 About Urban Design India
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-200">
+              <h1 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
                 Crafting Spaces That 
                 <span className="block text-accent">
                   Inspire Excellence
                 </span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-400 px-4 sm:px-0">
+              <p 
+                className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed px-4 sm:px-0"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
                 For over 15 years, we&apos;ve been transforming dreams into reality through exceptional interior design and unparalleled craftsmanship.
               </p>
             </div>
@@ -92,12 +105,17 @@ export default function AboutPage() {
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {achievements.map((achievement, index) => (
-                <div key={index} className="text-center group">
-                  <div className="text-4xl mb-3">{achievement.icon}</div>
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
-                    {achievement.number}
+                <div 
+                  key={index} 
+                  className="text-center group transform hover:scale-110 transition-all duration-500 hover:-translate-y-2"
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 100}
+                >
+                  <div className="text-4xl mb-3 transform group-hover:scale-125 transition-transform duration-300">{achievement.icon}</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:text-primary transition-colors duration-300">
+                    <span data-counter={achievement.number}>0</span>+
                   </div>
-                  <div className="text-gray-600 font-medium">{achievement.label}</div>
+                  <div className="text-gray-600 font-medium group-hover:text-gray-900 transition-colors duration-300">{achievement.label}</div>
                 </div>
               ))}
             </div>
@@ -108,7 +126,7 @@ export default function AboutPage() {
         <section className="py-24 bg-gray-50">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
+              <div data-aos="fade-right" data-aos-delay="100">
                 <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                   Our Story
                 </div>
@@ -124,22 +142,27 @@ export default function AboutPage() {
                 </p>
                 <Link
                   href="/portfolio"
-                  className="inline-flex items-center bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center"
+                  className="group inline-flex items-center bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-500 shadow-xl w-full sm:w-auto justify-center transform hover:-translate-y-2 hover:scale-105"
                 >
                   View Our Work
-                  <FaArrowRight className="ml-2" />
+                  <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                 </Link>
               </div>
-              <div className="relative">
-                <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative" data-aos="fade-left" data-aos-delay="200">
+                <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
                   <Image
                     src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop"
                     alt="Our Design Process"
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                <div 
+                  className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 transform hover:scale-110 transition-transform duration-300"
+                  data-aos="zoom-in"
+                  data-aos-delay="500"
+                >
                   <div className="flex items-center space-x-3">
                     <FaQuoteLeft className="text-accent text-2xl" />
                     <div>
@@ -156,7 +179,10 @@ export default function AboutPage() {
         {/* Our Values */}
         <section className="py-24 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-16">
+            <div 
+              className="text-center mb-16"
+              data-aos="fade-up"
+            >
               <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
                 Our Values
               </div>
@@ -168,12 +194,21 @@ export default function AboutPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
-                <div key={index} className="group text-center">
-                  <div className="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                    <value.icon className="text-3xl text-white" />
+                <div 
+                  key={index} 
+                  className="group text-center transform hover:-translate-y-4 hover:scale-105 transition-all duration-500"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                >
+                  <div className="w-20 h-20 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                    <value.icon className="text-3xl text-white transform group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900">{value.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-colors duration-300">{value.title}</h3>
+                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">{value.description}</p>
+                  
+                  {/* Hover glow effect */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+                       style={{ boxShadow: '0 0 30px rgba(var(--accent-rgb), 0.2)' }}></div>
                 </div>
               ))}
             </div>
@@ -277,6 +312,6 @@ export default function AboutPage() {
         </section>
       </main>
       <Footer />
-    </>
+    </AnimatedPage>
   );
 }

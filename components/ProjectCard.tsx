@@ -76,7 +76,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <>
-      <div className="group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative">
+      <div className="group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-4 hover:rotate-1 relative">
         <div className="relative h-64 overflow-hidden" onClick={() => openImageModal(0)}>
           {project.images && project.images.length > 0 ? (
             <>
@@ -84,29 +84,38 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 src={project.images[0]}
                 alt={project.title}
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                className="object-cover group-hover:scale-125 transition-transform duration-700"
                 unoptimized
               />
               {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Animated particles */}
+              <div className="absolute top-4 left-4 w-2 h-2 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0"></div>
+              <div className="absolute top-8 left-8 w-1 h-1 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1200 transform translate-y-4 group-hover:translate-y-0"></div>
+              <div className="absolute bottom-8 right-4 w-1.5 h-1.5 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1400 transform translate-y-4 group-hover:translate-y-0"></div>
               
               {/* Hover content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+              <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-8 group-hover:translate-y-0">
                 <div className="text-white">
-                  <p className="text-accent text-sm font-medium mb-1">{project.category.name}</p>
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <div className="flex items-center text-sm">
-                    <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  <p className="text-accent text-sm font-medium mb-1 transform translate-x-4 group-hover:translate-x-0 transition-transform duration-300 delay-100">{project.category.name}</p>
+                  <h3 className="text-xl font-bold mb-2 transform translate-x-4 group-hover:translate-x-0 transition-transform duration-300 delay-200">{project.title}</h3>
+                  <div className="flex items-center text-sm transform translate-x-4 group-hover:translate-x-0 transition-transform duration-300 delay-300">
+                    <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full hover:bg-accent hover:scale-110 transition-all duration-300">
                       View Gallery ({project.images.length} photos)
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Corner accent */}
-              <div className="absolute top-4 right-4 w-8 h-8 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100 flex items-center justify-center">
-                <span className="text-white text-sm font-bold">+</span>
+              {/* Corner accent with animation */}
+              <div className="absolute top-4 right-4 w-8 h-8 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100 flex items-center justify-center animate-pulse">
+                <span className="text-white text-sm font-bold transform group-hover:rotate-180 transition-transform duration-500">+</span>
               </div>
+
+              {/* Glow effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" 
+                   style={{ boxShadow: 'inset 0 0 30px rgba(var(--accent-rgb), 0.3)' }}></div>
             </>
           ) : (
             <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -114,12 +123,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
         </div>
-        <div className="p-4 bg-white group-hover:bg-gradient-to-br group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-300">
-          <p className="text-sm text-accent mb-2 group-hover:text-accent transition-colors duration-300">{project.category.name}</p>
-          <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">
+        <div className="p-4 bg-white group-hover:bg-gradient-to-br group-hover:from-accent/10 group-hover:to-accent/5 transition-all duration-500 transform group-hover:translate-y-1">
+          <p className="text-sm text-accent mb-2 group-hover:text-accent transition-all duration-300 transform group-hover:translate-x-2">{project.category.name}</p>
+          <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-all duration-300 transform group-hover:translate-x-2">
             {project.title}
           </h3>
         </div>
+        
+        {/* Hover border glow */}
+        <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none border-2 border-accent/30"></div>
       </div>
 
       {/* Image Modal */}

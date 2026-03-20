@@ -23,10 +23,17 @@ export async function POST(request: NextRequest) {
     await dbConnect();
     const data = await request.json();
     
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
+    // Validate required fields
+    if (!data.name || !data.phone) {
+      return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 });
+    }
+    
+    // Validate email if provided
+    if (data.email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
+      }
     }
     
     const contact = await Contact.create(data);

@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-interface AnimatedHomepageProps {
+interface AnimatedPageProps {
   children: React.ReactNode;
 }
 
-export default function AnimatedHomepage({ children }: AnimatedHomepageProps) {
+export default function AnimatedPage({ children }: AnimatedPageProps) {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -59,9 +59,24 @@ export default function AnimatedHomepage({ children }: AnimatedHomepageProps) {
     // Initialize counter animations
     animateCounters();
 
+    // Parallax effect for hero sections
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('[data-parallax]');
+      
+      parallaxElements.forEach((element) => {
+        const speed = parseFloat(element.getAttribute('data-parallax') || '0.5');
+        const yPos = -(scrolled * speed);
+        (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     // Cleanup function
     return () => {
       AOS.refresh();
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

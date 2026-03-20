@@ -20,14 +20,17 @@ export default function PortfolioClient({ initialProjects, initialCategories }: 
     <section className="py-20 bg-gray-50">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="text-amber-600 text-sm font-semibold tracking-wider uppercase mb-4 flex items-center justify-center gap-2">
-            <FaFilter className="text-amber-600" />
+        <div 
+          className="text-center mb-16"
+          data-aos="fade-up"
+        >
+          <div className="text-accent text-sm font-semibold tracking-wider uppercase mb-4 flex items-center justify-center gap-2">
+            <FaFilter className="text-accent" />
             Filter Projects
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
             Our Premium 
-            <span className="text-amber-600"> Portfolio</span>
+            <span className="text-accent"> Portfolio</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore our curated collection of exceptional interior design projects that showcase our expertise across various categories and styles.
@@ -35,26 +38,32 @@ export default function PortfolioClient({ initialProjects, initialCategories }: 
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div 
+          className="flex flex-wrap justify-center gap-3 mb-16"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-6 py-3 rounded-full transition-all duration-300 font-semibold text-sm uppercase tracking-wider ${
+            className={`px-6 py-3 rounded-full transition-all duration-500 font-semibold text-sm uppercase tracking-wider transform hover:scale-110 hover:-translate-y-1 ${
               selectedCategory === 'all'
-                ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg transform scale-105'
-                : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg hover:scale-105 border border-gray-200'
+                ? 'bg-accent text-white shadow-xl scale-105 animate-pulse'
+                : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-2xl border border-gray-200'
             }`}
           >
             All Projects
           </button>
-          {initialCategories.map((category: any) => (
+          {initialCategories.map((category: any, index: number) => (
             <button
               key={category._id}
               onClick={() => setSelectedCategory(category._id)}
-              className={`px-6 py-3 rounded-full transition-all duration-300 font-semibold text-sm uppercase tracking-wider ${
+              className={`px-6 py-3 rounded-full transition-all duration-500 font-semibold text-sm uppercase tracking-wider transform hover:scale-110 hover:-translate-y-1 ${
                 selectedCategory === category._id
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg transform scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg hover:scale-105 border border-gray-200'
+                  ? 'bg-accent text-white shadow-xl scale-105 animate-pulse'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-2xl border border-gray-200'
               }`}
+              data-aos="zoom-in"
+              data-aos-delay={200 + (index * 50)}
             >
               {category.name}
             </button>
@@ -63,9 +72,12 @@ export default function PortfolioClient({ initialProjects, initialCategories }: 
 
         {/* Projects Grid */}
         {filteredProjects.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="bg-white rounded-2xl shadow-xl p-12 max-w-md mx-auto">
-              <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div 
+            className="text-center py-20"
+            data-aos="zoom-in"
+          >
+            <div className="bg-white rounded-2xl shadow-xl p-12 max-w-md mx-auto transform hover:scale-105 transition-all duration-500">
+              <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
                 <div className="text-3xl text-white">🏠</div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">No Projects Found</h3>
@@ -77,16 +89,25 @@ export default function PortfolioClient({ initialProjects, initialCategories }: 
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {filteredProjects.map((project: any) => (
-                <div key={project._id} className="group">
+              {filteredProjects.map((project: any, index: number) => (
+                <div 
+                  key={project._id} 
+                  className="group"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                >
                   <ProjectCard project={project} />
                 </div>
               ))}
             </div>
             
             {/* Results Counter */}
-            <div className="text-center">
-              <div className="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
+            <div 
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div className="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200 transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
                 <span className="text-gray-600 font-medium">
                   Showing {filteredProjects.length} of {initialProjects.length} projects
                 </span>
