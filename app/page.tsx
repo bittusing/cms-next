@@ -323,7 +323,7 @@ export default async function Home() {
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-all duration-500 transform group-hover:translate-x-2">Consultation</h3>
                   <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-all duration-500">
-                   Bring your ideas to life with expert consultation tailored to your needs. Whether you're planning a new space or upgrading an existing one, our consultation services help you make informed and confident decisions.
+                   Bring your ideas to life with expert consultation tailored to your needs. Whether you&apos;re planning a new space or upgrading an existing one, our consultation services help you make informed and confident decisions.
                   </p>
                   <Link href="/services" className="text-accent font-semibold hover:opacity-80 transition-all duration-300 flex items-center group-hover:translate-x-4">
                     Learn More <FaArrowRight className="ml-2 text-sm group-hover:translate-x-2 transition-transform duration-500" />
