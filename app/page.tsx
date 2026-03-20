@@ -295,7 +295,7 @@ export default async function Home() {
                   <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
                     <div className="text-2xl text-white transform group-hover:scale-110 transition-transform duration-300">🏢</div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-all duration-500 transform group-hover:translate-x-2">Commercial/office  Design</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-accent transition-all duration-500 transform group-hover:translate-x-2">Commercial/Office  Design</h3>
                   <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-all duration-500">
                     Create inspiring workspaces that enhance productivity and reflect your brand&apos;s identity and values.
                   </p>
