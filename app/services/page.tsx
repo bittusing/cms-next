@@ -178,24 +178,24 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            {/* Process Steps - Full Width Connected Design with NO gaps */}
-            <div className="max-w-5xl mx-auto space-y-0">
+            {/* Process Steps - Alternating Flow with Consistent Sizing */}
+            <div className="max-w-5xl mx-auto space-y-4">
               {/* Step 1 - Left title, Right description */}
               <div 
                 className="flex items-center w-full group hover:scale-105 transition-all duration-500"
                 data-aos="fade-right"
                 data-aos-delay="100"
               >
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1 group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-x-2">
-                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                <div className="flex items-center justify-start bg-white border-2 border-accent rounded-full px-6 py-4 w-1/2 min-h-[80px] group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-x-2">
+                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-base font-bold mr-4 flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
                     1
                   </div>
-                  <h3 className="font-bold text-gray-900 text-lg group-hover:text-accent transition-colors duration-500">
+                  <h3 className="font-bold text-gray-900 text-base group-hover:text-accent transition-colors duration-500 text-left">
                     Consultation & Understanding
                   </h3>
                 </div>
-                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1 group-hover:bg-primary transition-all duration-500 transform group-hover:translate-x-2 group-hover:shadow-2xl">
-                  <p className="text-center text-sm">
+                <div className="bg-accent text-white rounded-full px-6 py-4 w-1/2 min-h-[80px] flex items-center justify-center group-hover:bg-primary transition-all duration-500 transform group-hover:translate-x-2 group-hover:shadow-2xl">
+                  <p className="text-center text-base">
                     We explore your ideas, preferences, and functional requirements
                   </p>
                 </div>
@@ -207,16 +207,16 @@ export default function ServicesPage() {
                 data-aos="fade-left"
                 data-aos-delay="200"
               >
-                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1 group-hover:bg-primary transition-all duration-500 transform group-hover:-translate-x-2 group-hover:shadow-2xl">
-                  <p className="text-center text-sm">
+                <div className="bg-accent text-white rounded-full px-6 py-4 w-1/2 min-h-[80px] flex items-center justify-center group-hover:bg-primary transition-all duration-500 transform group-hover:-translate-x-2 group-hover:shadow-2xl">
+                  <p className="text-center text-base">
                     Creative planning with mood boards, layouts, and visual direction
                   </p>
                 </div>
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1 group-hover:shadow-xl transition-all duration-500 transform group-hover:translate-x-2">
-                  <h3 className="font-bold text-gray-900 text-lg mr-4 group-hover:text-accent transition-colors duration-500">
+                <div className="flex items-center justify-end bg-white border-2 border-accent rounded-full px-6 py-4 w-1/2 min-h-[80px] group-hover:shadow-xl transition-all duration-500 transform group-hover:translate-x-2">
+                  <h3 className="font-bold text-gray-900 text-base mr-4 group-hover:text-accent transition-colors duration-500 text-right">
                     Concept Development
                   </h3>
-                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-base font-bold flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
                     2
                   </div>
                 </div>
@@ -228,16 +228,16 @@ export default function ServicesPage() {
                 data-aos="fade-right"
                 data-aos-delay="300"
               >
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1 group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-x-2">
-                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                <div className="flex items-center justify-start bg-white border-2 border-accent rounded-full px-6 py-4 w-1/2 min-h-[80px] group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-x-2">
+                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-base font-bold mr-4 flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
                     3
                   </div>
-                  <h3 className="font-bold text-gray-900 text-lg group-hover:text-accent transition-colors duration-500">
+                  <h3 className="font-bold text-gray-900 text-base group-hover:text-accent transition-colors duration-500 text-left">
                     2D & 3D Visualization
                   </h3>
                 </div>
-                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1 group-hover:bg-primary transition-all duration-500 transform group-hover:translate-x-2 group-hover:shadow-2xl">
-                  <p className="text-center text-sm">
+                <div className="bg-accent text-white rounded-full px-6 py-4 w-1/2 min-h-[80px] flex items-center justify-center group-hover:bg-primary transition-all duration-500 transform group-hover:translate-x-2 group-hover:shadow-2xl">
+                  <p className="text-center text-base">
                     Realistic renderings for clarity and refinement
                   </p>
                 </div>
@@ -249,16 +249,16 @@ export default function ServicesPage() {
                 data-aos="fade-left"
                 data-aos-delay="400"
               >
-                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1 group-hover:bg-primary transition-all duration-500 transform group-hover:-translate-x-2 group-hover:shadow-2xl">
-                  <p className="text-center text-sm">
+                <div className="bg-accent text-white rounded-full px-6 py-4 w-1/2 min-h-[80px] flex items-center justify-center group-hover:bg-primary transition-all duration-500 transform group-hover:-translate-x-2 group-hover:shadow-2xl">
+                  <p className="text-center text-base">
                     Precise implementation with strict quality control
                   </p>
                 </div>
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1 group-hover:shadow-xl transition-all duration-500 transform group-hover:translate-x-2">
-                  <h3 className="font-bold text-gray-900 text-lg mr-4 group-hover:text-accent transition-colors duration-500">
+                <div className="flex items-center justify-end bg-white border-2 border-accent rounded-full px-6 py-4 w-1/2 min-h-[80px] group-hover:shadow-xl transition-all duration-500 transform group-hover:translate-x-2">
+                  <h3 className="font-bold text-gray-900 text-base mr-4 group-hover:text-accent transition-colors duration-500 text-right">
                     Execution & Supervision
                   </h3>
-                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-base font-bold flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
                     4
                   </div>
                 </div>
@@ -270,16 +270,16 @@ export default function ServicesPage() {
                 data-aos="fade-right"
                 data-aos-delay="500"
               >
-                <div className="flex items-center bg-white border-2 border-accent rounded-full px-6 py-4 flex-1 group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-x-2">
-                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                <div className="flex items-center justify-start bg-white border-2 border-accent rounded-full px-6 py-4 w-1/2 min-h-[80px] group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-x-2">
+                  <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-base font-bold mr-4 flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
                     5
                   </div>
-                  <h3 className="font-bold text-gray-900 text-lg group-hover:text-accent transition-colors duration-500">
+                  <h3 className="font-bold text-gray-900 text-base group-hover:text-accent transition-colors duration-500 text-left">
                     Final Styling & Handover
                   </h3>
                 </div>
-                <div className="bg-accent text-white rounded-full px-6 py-4 flex-1 group-hover:bg-primary transition-all duration-500 transform group-hover:translate-x-2 group-hover:shadow-2xl">
-                  <p className="text-center text-sm">
+                <div className="bg-accent text-white rounded-full px-6 py-4 w-1/2 min-h-[80px] flex items-center justify-center group-hover:bg-primary transition-all duration-500 transform group-hover:translate-x-2 group-hover:shadow-2xl">
+                  <p className="text-center text-base">
                     A perfectly finished space ready to inspire
                   </p>
                 </div>
