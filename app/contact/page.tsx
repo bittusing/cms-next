@@ -5,6 +5,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedPage from '@/components/AnimatedPage';
 
+const serviceCategories: Record<string, string[]> = {
+  'Interior Designer': ['2D And 3D Interior', 'Residential Interior', 'Commercial Interior'],
+  'Residential Interior': ['Farmhouse Design', 'Bedroom Scheme', 'Modular Kitchen', 'Living Room', 'Dining Room', 'Kids Room'],
+  'Commercial Interior': ['Farmhouse Design', 'Banquet Hall', 'Institutional', 'Corporate'],
+};
+
+const SERVICE_SEPARATOR = '::';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,27 +20,30 @@ export default function ContactPage() {
     phone: '',
     service: '',
     subService: '',
+    selectedService: '',
     message: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const serviceCategories = {
-    'Interior Designer': [
-      '2D And 3D Interior',
-      'Residential Interior',
-      'Commercial Interior'
-    ],
-    'Residential Interior': [
-      'Bedroom Interior',
-      'Modular Kitchen',
-      'Living Room',
-      'Dining Room',
-      'Kids Room'
-    ],
-    'Commercial Interior': [
-      'Office Interior'
-    ]
+  const handleServiceChange = (value: string) => {
+    if (!value) {
+      setFormData((previous) => ({
+        ...previous,
+        selectedService: '',
+        service: '',
+        subService: '',
+      }));
+      return;
+    }
+
+    const [service, subService] = value.split(SERVICE_SEPARATOR);
+    setFormData((previous) => ({
+      ...previous,
+      selectedService: value,
+      service,
+      subService: subService || '',
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,20 +51,32 @@ export default function ContactPage() {
     setStatus('loading');
     setErrorMessage('');
 
-    console.log('Submitting form data:', formData); // Debug log
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          subService: formData.subService,
+          message: formData.message,
+        }),
       });
 
       if (res.ok) {
-        const result = await res.json();
-        console.log('Contact created successfully:', result); // Debug log
+        await res.json();
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', service: '', subService: '', message: '' });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          subService: '',
+          selectedService: '',
+          message: '',
+        });
       } else {
         const data = await res.json();
         setErrorMessage(data.error || 'Failed to send message');
@@ -160,45 +183,31 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="service" className="block text-sm font-medium mb-2">
-                      Service Category *
+                      Service *
                     </label>
                     <select
                       id="service"
                       required
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value, subService: '' })}
+                      value={formData.selectedService}
+                      onChange={(e) => handleServiceChange(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
                     >
                       <option value="">Select a service</option>
-                      {Object.keys(serviceCategories).map((category) => (
-                        <option key={category} value={category}>
-                          {category}
-                        </option>
+                      {Object.entries(serviceCategories).map(([category, services]) => (
+                        <optgroup key={category} label={category}>
+                          <option value={category}>{category}</option>
+                          {services.map((specificService) => (
+                            <option
+                              key={`${category}${SERVICE_SEPARATOR}${specificService}`}
+                              value={`${category}${SERVICE_SEPARATOR}${specificService}`}
+                            >
+                              {specificService}
+                            </option>
+                          ))}
+                        </optgroup>
                       ))}
                     </select>
                   </div>
-
-                  {formData.service && (
-                    <div>
-                      <label htmlFor="subService" className="block text-sm font-medium mb-2">
-                        Specific Service *
-                      </label>
-                      <select
-                        id="subService"
-                        required
-                        value={formData.subService}
-                        onChange={(e) => setFormData({ ...formData, subService: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                      >
-                        <option value="">Select specific service</option>
-                        {serviceCategories[formData.service as keyof typeof serviceCategories]?.map((subCategory) => (
-                          <option key={subCategory} value={subCategory}>
-                            {subCategory}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-2">

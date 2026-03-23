@@ -46,31 +46,25 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
           
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="container-custom">
+            <div className="container-custom px-4 sm:px-6">
               <div className="max-w-4xl text-white">
-                <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in-up">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight animate-fade-in-up">
                   {slide.title}
                   <span className="block text-accent">
                     Excellence
                   </span>
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-200">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-200 pr-8 sm:pr-0">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-400">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up animation-delay-400">
                   <Link
                     href="/portfolio"
-                    className="group bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center shadow-2xl"
+                    className="group bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center justify-center shadow-2xl"
                   >
                     Explore Our Work
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  {/* <button className="group flex items-center text-white text-lg font-semibold hover:text-accent transition-colors">
-                    <div className="w-12 h-12 rounded-full border-2 border-white group-hover:border-accent flex items-center justify-center mr-3 transition-colors">
-                      <FaPlay className="ml-1" />
-                    </div>
-                    Watch Our Story
-                  </button> */}
                 </div>
               </div>
             </div>
@@ -78,16 +72,16 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         </div>
       ))}
 
-      {/* Vertical Navigation on Left */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col space-y-4 z-10">
+      {/* Vertical Navigation - Hidden on Mobile/Tablet, visible on larger screens */}
+      <div className="hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 flex-col space-y-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
             className={`transition-all duration-300 ${
               index === current 
-                ? 'w-6 h-6 bg-accent rounded-full scale-125' 
-                : 'w-4 h-4 bg-white/50 rounded-full hover:bg-white/70 hover:scale-110'
+                ? 'w-4 h-4 bg-accent rounded-full scale-110' 
+                : 'w-2.5 h-2.5 bg-white/50 rounded-full hover:bg-white/70 hover:scale-110'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -109,16 +103,17 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
       </button> */}
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 sm:space-x-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
             className={`transition-all duration-300 ${
               index === current 
-                ? 'w-12 h-3 bg-accent rounded-full' 
-                : 'w-3 h-3 bg-white/50 rounded-full hover:bg-white/70'
+                ? 'w-8 h-2 bg-accent rounded-full sm:w-12 sm:h-3' 
+                : 'w-2 h-2 bg-white/50 rounded-full hover:bg-white/70 sm:w-3 sm:h-3'
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
