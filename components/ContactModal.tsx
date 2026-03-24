@@ -43,8 +43,8 @@ export default function ContactModal() {
         onClick={() => setIsOpen(false)}
       />
 
-      <div className="relative z-10 h-full w-full flex items-center justify-end p-0 sm:p-6">
-        <div className="w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-md bg-white sm:rounded-2xl shadow-2xl border border-gray-100 overflow-y-auto">
+      <div className="relative z-10 h-full w-full flex items-center justify-center sm:justify-end p-4 sm:p-6">
+        <div className="w-full max-w-[94vw] max-h-[88vh] sm:max-h-[90vh] sm:max-w-md bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 sticky top-0 bg-white z-10">
             <div className="min-w-0">
               <div className="text-accent text-sm font-semibold tracking-wider uppercase">
@@ -63,7 +63,7 @@ export default function ContactModal() {
             </button>
           </div>
 
-          <div className="px-5 py-5 sm:px-6 sm:py-6">
+          <div className="px-5 py-5 sm:px-6 sm:py-6 overflow-y-auto max-h-[calc(88vh-68px)] sm:max-h-[calc(90vh-68px)]">
             <ContactForm onSuccess={() => setIsOpen(false)} showMessageField={false} compact={true} />
           </div>
         </div>
