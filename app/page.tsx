@@ -6,6 +6,7 @@ import ModernAdsBanner from '@/components/ModernAdsBanner';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
+import ContactModal from '@/components/ContactModal';
 
 // Lazy load components for better performance
 const ProjectCardModal = dynamic(() => import('@/components/ProjectCardModal'), {
@@ -129,7 +130,7 @@ export default async function Home() {
                     href="/portfolio"
                     className="group bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center shadow-2xl w-full sm:w-auto justify-center btn-hover-slide relative overflow-hidden transform hover:-translate-y-1"
                   >
-                    Explore Our Work
+                    Step Into Our Designs
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -164,7 +165,7 @@ export default async function Home() {
                     data-aos-delay="200"
                   >
                     <div className="text-3xl font-bold text-accent mb-2">
-                      <span data-counter="500">0</span>+
+                      <span data-counter="50">0</span>+
                     </div>
                     <div className="text-sm font-semibold">Projects Completed</div>
                   </div>
@@ -448,6 +449,7 @@ export default async function Home() {
           showCategories={false}
         />
       </main>
+      <ContactModal />
       <Footer />
     </AnimatedHomepage>
   );

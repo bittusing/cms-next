@@ -50,9 +50,9 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
               <div className="max-w-4xl text-white">
                 <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight animate-fade-in-up">
                   {slide.title}
-                  <span className="block text-accent">
+                  {/* <span className="block text-accent">
                     Excellence
-                  </span>
+                  </span> */}
                 </h1>
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200 leading-relaxed animate-fade-in-up animation-delay-200 pr-8 sm:pr-0">
                   {slide.subtitle}
@@ -62,7 +62,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
                     href="/portfolio"
                     className="group bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:opacity-90 transition-all duration-300 flex items-center justify-center shadow-2xl"
                   >
-                    Explore Our Work
+                    Step Into Our Designs
                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
